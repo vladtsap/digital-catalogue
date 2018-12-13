@@ -116,4 +116,4 @@ venv.bak/
 *.pyc
 .pyc
 __pycache__/
-
+*/*.pyc
