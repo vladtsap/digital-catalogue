@@ -8,7 +8,8 @@ class SubjectAdmin(admin.ModelAdmin):
 
 
 class ArtAdmin(admin.ModelAdmin):
-    list_display = ['name', 'country']
+    list_display = ['name', 'slug']
+    prepopulated_fields = {'slug': ('name', )}
 
 class GroupAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
