@@ -29,13 +29,7 @@ class Art(models.Model):
 		return str(self.name) + str(self.country)
 
 class Group(models.Model):
-	GROUP_CHOICES = (
-		(u'VI', u'Вітчизняні'),
-		(u'IN', u'Іноземні'),
-		(u'PI', u'Періодика'),
-		(u'CA', u'Каталог'),
-	)
-	name = models.CharField(max_length=200, choices=GROUP_CHOICES, db_index=True)
+	name = models.CharField(max_length=200, db_index=True, unique=True)
 	slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
 	class Meta:
