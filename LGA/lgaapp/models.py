@@ -19,7 +19,6 @@ class Subject(models.Model):
 class Art(models.Model):
     name = models.CharField(max_length=200, db_index=True, unique=True)
     country = models.CharField(max_length=200, db_index=True, unique=True)
-    slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
     class Meta:
         ordering = ['country']

@@ -8,8 +8,7 @@ class SubjectAdmin(admin.ModelAdmin):
 
 
 class ArtAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug', 'country']
-    prepopulated_fields = {'slug': ('name', 'country')}
+    list_display = ['name', 'country']
 
 
 admin.site.register(Subject, SubjectAdmin)
