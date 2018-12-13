@@ -24,6 +24,7 @@ class Art(models.Model):
     class Meta:
         ordering = ['country']
         verbose_name = 'Мистецтво'
+        verbose_name_plural = 'Мистецтво'
 
     def __str__(self):
         return str(self.name) + str(self.country)
