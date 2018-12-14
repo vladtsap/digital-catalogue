@@ -17,10 +17,9 @@ class GroupAdmin(admin.ModelAdmin):
     list_display = ['name', 'slug']
     prepopulated_fields = {'slug': ('name', )}
 
-
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['name', 'slug']
-    prepopulated_fields = {'slug': ('name', )}
+    list_display = ['name','slug']
+    prepopulated_fields = {'slug': ('name', 'isbn', )}
 
 
 admin.site.register(Subject, SubjectAdmin)
