@@ -1,0 +1,31 @@
+{% for art in arts %}
+    <p>{{ art }}<p>
+{% endfor %}
+
+<select>
+{% for art in arts %}
+   <option>{{ art }}</option>
+{% endfor %}
+</select>
+
+
+<!doctype html>
+
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+
+  <title>Деталі книги</title>
+  <!--<meta name="description" content="Опис такої-то книги">
+  <meta name="author" content="">-->
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+	<div id="author">
+		<div style="value">Автор: </div>
+		<div style="key">Шевченко</div>
+	</div>
+
+</body>
+</html>
