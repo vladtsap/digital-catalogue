@@ -3,19 +3,14 @@ from .models import Art, Book
 # Create your views here.
 
 
-def BookView(request, art_slug=None):
-    art = None
-    arts = Art.objects.all()
+def BookView(request):
     books = Book.objects.filter(id=1)
+    arts = [Art.objects.get(pk=x['art']) for x in books.values('art')]
 
-    if art_slug:
-        art = get_object_or_404(Art, slug=art_slug)
-        books = books.filter(art=art)
 
     return render(request, 'search/index.html', {
-        'art': art,
-        'arts': arts,
-        'books': books
+        'books': books,
+        'arts': arts
     })
 
 #return render(request, 'search/index.html', {'arts':arts}) VLAD
