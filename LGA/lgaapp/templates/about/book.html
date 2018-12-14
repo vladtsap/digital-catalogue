@@ -4,8 +4,9 @@
 <html lang="uk">
 <head>
   <meta charset="utf-8">
-
-  <title>Деталі книги</title>
+{% for book in books %}
+  <title>Деталі книги {{ book.name }}</title>
+  {% endfor %}
   <link rel="stylesheet" href="{% static 'css/book.css' %}">
   <script src="script.js"></script>
 </head>

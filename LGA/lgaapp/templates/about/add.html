@@ -1,0 +1,18 @@
+{% load static %}
+<!doctype html>
+
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>Додати книгу</title>
+  <link rel="stylesheet" href="{% static 'css/add.css' %}">
+</head>
+<body>
+	<h1>Додати книгу</h1>
+    <form method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Зберегти</button>
+    </form>
+<script src="{% static 'js/add.js' %}"></script>
+</body>
+</html>
