@@ -36,8 +36,22 @@ class Group(models.Model):
 
     class Meta:
         ordering = ['name']
-        verbose_name = 'Групи'
+        verbose_name = 'Група'
         verbose_name_plural = 'Групи'
+
+    def __str__(self):
+        return self.name
+
+
+class Book(models.Model):
+    name = models.CharField(max_length=200, db_index=True, unique=True)
+    slug = models.SlugField(max_length=200, db_index=True, unique=True)
+    art = models.ForeignKey(Art, related_name='books', verbose_name='Мистецтво', on_delete=models.CASCADE, default=None)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Книга'
+        verbose_name_plural = 'Книги'
 
     def __str__(self):
         return self.name

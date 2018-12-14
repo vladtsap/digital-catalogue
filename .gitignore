@@ -117,3 +117,6 @@ venv.bak/
 .pyc
 __pycache__/
 *.pyc
+LGA/db.sqlite3
+LGA/db.sqlite3
+LGA/db.sqlite3
