@@ -12,7 +12,7 @@ def BookView(request, art_slug=None):
         art = get_object_or_404(Art, slug=art_slug)
         books = books.filter(art=art)
 
-    return render(request, {
+    return render(request, 'search/index.html', {
         'art': art,
         'arts': arts,
         'books': books
