@@ -17,3 +17,5 @@ def BookView(request, art_slug=None):
         'arts': arts,
         'books': books
     })
+
+#return render(request, 'search/index.html', {'arts':arts}) VLAD
