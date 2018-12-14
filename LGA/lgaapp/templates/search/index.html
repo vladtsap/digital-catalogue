@@ -8,6 +8,14 @@
 {% endfor %}
 </select>
 -->
+
+{{ arts }}
+
+{% for art in q %}
+   <p>{{ art }}</p>
+{% endfor %}
+
+
 {% load static %}
 <!doctype html>
 
@@ -22,9 +30,15 @@
   <script src="script.js"></script>
 </head>
 <body>
+	<div id="name">
+		<div class="value">Назва:</div>
+		<div class="key">Шевченко</div>
+	</div>
 	<div id="author">
 		<div class="value">Автор:</div>
 		<div class="key">Шевченко</div>
 	</div>
+
 </body>
 </html>
+
