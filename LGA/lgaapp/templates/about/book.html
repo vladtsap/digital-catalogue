@@ -1,0 +1,118 @@
+{% load static %}
+<!doctype html>
+
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+{% for book in books %}
+  <title>Деталі книги {{ book.name }}</title>
+  {% endfor %}
+  <link rel="stylesheet" href="{% static 'css/book.css' %}">
+  <script src="script.js"></script>
+</head>
+<body>
+	<div id="name">
+		<div class="value">Назва:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.name }}</div>
+		{% endfor %}
+	</div>
+	<div id="author">
+		<div class="value">Автор:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.author }}</div>
+		{% endfor %}
+	</div>
+	<div id="publication">
+		<div class="value">Видання:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.publication }}</div>
+		{% endfor %}
+	</div>
+	<div id="description">
+		<div class="value">Опис:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.description }}</div>
+		{% endfor %}
+	</div>
+	<div id="series">
+		<div class="value">Серія:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.series }}</div>
+		{% endfor %}
+	</div>
+	<div id="personality">
+		<div class="value">Персоналія:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.personality }}</div>
+		{% endfor %}
+	</div>
+	<div id="additional">
+		<div class="value">Додаткові дані:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.additional }}</div>
+		{% endfor %}
+	</div>
+	<div id="isbn">
+		<div class="value">ISBN:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.isbn }}</div>
+		{% endfor %}
+	</div>
+	<div id="inventory_number">
+		<div class="value">Інвентарний номер:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.inventory_number }}</div>
+		{% endfor %}
+	</div>
+	<div id="cipher">
+		<div class="value">Шифр книги:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.cipher }}</div>
+		{% endfor %}
+	</div>
+	<div id="year">
+		<div class="value">Рік:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.year }}</div>
+		{% endfor %}
+	</div>
+	<div id="place">
+		<div class="value">Місцезнаходження:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.place }}</div>
+		{% endfor %}
+	</div>
+	<div id="language">
+		<div class="value">Мова:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.language }}</div>
+		{% endfor %}
+	</div>
+	<div id="group">
+		<div class="value">Групи:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.group }}</div>
+		{% endfor %}
+	</div>
+	<div id="subject">
+		<div class="value">Тематика:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.subject }}</div>
+		{% endfor %}
+	</div>
+	<div id="art">
+		<div class="value">Мистецтво:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.art }}</div>
+		{% endfor %}
+	</div>
+	<div id="country">
+		<div class="value">Країна:</div>
+		{% for book in books %}
+    	<div class="key">{{ book.country }}</div>
+		{% endfor %}
+	</div>
+</body>
+</html>
+
