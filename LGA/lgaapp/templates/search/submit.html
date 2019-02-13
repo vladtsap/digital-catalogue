@@ -9,13 +9,25 @@
 </head>
 <body>
 	<h1>Знайти книгу</h1>
-    <form method="GET">
-       <button class="searchbutton" type="submit">ЗНАЙТІ</button>
-      <input class="searchfield" id="searchbox" name="search" type="text" placeholder="Search">
-    </form>
+    
+
+ <form action="{% url 'search:index' %}" method="get">
+    <div class="input-group">
+        <input id="search" name="q" type="text" placeholder="Поиск">
+        <span class="input-group-btn">
+            <button type="submit">SEARCH</button>
+        </span>
+    </div>
+</form>
+
+
+
+
 <script src="{% static 'js/add.js' %}"></script>
 </body>
 </html>
+
+
 
 
 
