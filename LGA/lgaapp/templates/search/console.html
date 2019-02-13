@@ -9,10 +9,14 @@
 </head>
 <body>
 	<h1>Знайти книгу</h1>
-    <form method="GET">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Зберегти</button>
+    <form method="GET">
+       <button class="searchbutton" type="submit">ЗНАЙТІ</button>
+      <input class="searchfield" id="searchbox" name="search" type="text" placeholder="Search">
     </form>
 <script src="{% static 'js/add.js' %}"></script>
 </body>
 </html>
+
+
+
+ 

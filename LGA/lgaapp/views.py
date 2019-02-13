@@ -37,6 +37,6 @@ def search(request):
             status = Book.objects.filter() # filter returns a list so you might consider skip except par
         except:
             raise ValueError
-        return render(request,"search/result.html",{"books":status})
+        return render(request,"search/console.html",{"books":status})
     else:
         return render(request,"search/console.html",{})
