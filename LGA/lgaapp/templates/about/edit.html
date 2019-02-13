@@ -5,12 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Додати книгу</title>
+    <title>Редагувати книгу</title>
     <link rel="stylesheet" href="{% static 'css/dynamic/style.css' %}">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
       <a class="navbar-brand" href="/">Електронний каталог</a>
       <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -32,18 +32,17 @@
     <div class="container h-100">
         <div class="row justify-content-md-center">
             <div class="col-md-8 order-md-4">
-                <h4 class="mb-3">Додати книгу</h4> 
+                <h4 class="mb-3">Редагувати книгу</h4> 
                 {% crispy form %}
             </div>
         </div>
-    </div>
-</header>
+      </div>
+    </header>
+
         <footer class="my-5 pt-5 text-muted text-center text-small">
             <p class="mb-1">&copy; 2019 Електронний каталог</p>
         </footer>
     
-
-
 
     <script src="{% static 'js/add/script.js' %}"></script>
 </body>

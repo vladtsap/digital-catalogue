@@ -4,20 +4,51 @@
 <html lang="uk">
 <head>
   <meta charset="utf-8">
-  <title>Main</title>
-  <link rel="stylesheet" href="{% static 'css/book.css' %}">
-  <script src="script.js"></script>
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Головна сторінка</title>
+  <link rel="stylesheet" href="{% static '/css/index/style.css' %}">
+
 </head>
-<body>
-	<a href="/about/kobzar-65156-5456">Press here to open information about First book</a>
-	<br><br><br><br>
-	<a href="/about/zahar-berkut-88005553535">Press here to open information about Second book</a>
-	<br><br><br><br>
-	<a href="/about/starij-i-more-978-0-684-80122-3/">Press here to open information about Third book</a>
-	<br><br><br><br>
-	<a href="/about/majster-i-margarita-794613/">Press here to open information about Fourth book</a>
-	<br><br><br><br>
-	<a href="{% url 'add-book' %}">Press here to add new book</a>
+
+<body id="page-top">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="/">Електронний каталог</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/search/result/?n=&a=&publ=&desc=&ser=&pers=&isbn=&invnum=&ciph=&yfr=&yto=&plc=&lang=&cntr=&subj=&art=&gr=">Всього книг: {{ bookLength }}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'add-book' %}">Додати книгу</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/search">Пошук книги</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-10 align-self-end">
+          <h1 class="text-uppercase text-white font-weight-bold">Електронний каталог</h1>
+        </div>
+        <div class="col-lg-8 align-self-baseline">
+          <p class="text-white-75 font-weight-light mb-5">Тут Ви зможете знайти будь-яку книгу або додати нову ;)</p>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'add-book' %}">Додати</a>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="/search">Знайти</a>
+        </div>
+      </div>
+    </div>
+  </header>
 </body>
 </html>
 
