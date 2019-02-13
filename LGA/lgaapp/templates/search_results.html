@@ -1,0 +1,36 @@
+{% load static %}
+<!doctype html>
+
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+
+  <title>Результати пошуку</title>
+  <!--<link rel="stylesheet" href="{% static 'css/book.css' %}">
+  <script src="script.js"></script>-->
+</head>
+<body>
+	
+<form action="/search-result/" method="get">
+        <input type="text" name="q" value="{{ query }}">
+        <input type="submit" value="Search">
+    </form>
+
+  <p>You searched for: <strong>{{ query }}</strong></p>
+
+{% if books %}
+    <p>Found {{ books|length }} book{{ books|pluralize }}.</p>
+    <ul>
+        {% for book in books %}
+        <li>{{ book.name }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No books matched your search criteria.</p>
+{% endif %}
+</body>
+</html>
+
+
+
+

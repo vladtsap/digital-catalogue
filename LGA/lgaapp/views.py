@@ -1,10 +1,8 @@
+from django.http import HttpResponse
+
 from django.shortcuts import render, get_object_or_404, redirect, render_to_response
 from .models import Art, Book
 from .forms import AddBook
-
-from django.views import View
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from knowledge.models import Article
 
 
 def BookView(request, pk):
@@ -45,26 +43,22 @@ def BookAdd(request):
 #     else:
 #         return render(request,"search/console.html",{})
 
-class ESearchView(View):
-	template_name = 'search/index.html'
-	def get(self, request, *args, **kwargs):
-		context = {}
-		question = request.GET.get('q')
-		if question is not None:
-			search_articles = Article.objects.filter(article_content__search=question)
+def Search(request):
+	return render_to_response('search.html')
 
-				# формируем строку URL, которая будет содержать последний запрос
-				# Это важно для корректной работы пагинации
-				context['last_question'] = '?q=%s' % question
 
-				current_page = Paginator(search_articles, 10)
+def SearchResult(request):
+	if 'q' in request.GET and request.GET['q']:
+		q = request.GET['q']
+		books = Book.objects.filter(name=q)
+		return render_to_response('search_results.html',
+								  {'books': books, 'query': q})
+	else:
+		return HttpResponse('Please submit a search term.')
 
-				page = request.GET.get('page')
-				try:
-					context['article_lists'] = current_page.page(page)
-				except PageNotAnInteger:
-					context['article_lists'] = current_page.page(1)
-				except EmptyPage:
-					context['article_lists'] = current_page.page(current_page.num_pages)
 
-			return render_to_response(template_name=self.template_name, context=context)
+def bad_search(request):
+	# The following line will raise KeyError if 'q' hasn't
+	# been submitted!
+	message = 'You searched for: %r' % request.GET['q']
+	return HttpResponse(message)
