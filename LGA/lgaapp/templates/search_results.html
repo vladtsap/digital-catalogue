@@ -12,8 +12,8 @@
 <body>
 	
 <form action="/search-result/" method="get">
-        <input type="text" name="q" value="{{ query }}">
-        <input type="submit" value="Search">
+        <!--<input type="text" name="q" value="{{ query }}">
+        <input type="submit" value="Search">-->
     </form>
 
   <p>You searched for: <strong>{{ query }}</strong></p>
@@ -22,7 +22,7 @@
     <p>Found {{ books|length }} book{{ books|pluralize }}.</p>
     <ul>
         {% for book in books %}
-        <li>{{ book.name }}</li>
+        <li>{{ book.name }}. {{ book.author }}. {{ book.year }} р. <a href="/about/{{ book.slug }}">Детальшіше</a></li>
         {% endfor %}
     </ul>
 {% else %}
