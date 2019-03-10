@@ -11,7 +11,7 @@
 	<h1>Знайти книгу</h1>
     
 
-<form action="/search-result/" method="get">
+<form id= "searchform" action="/search-result/" method="get">
         <div class="value">Назва:</div>
         <div class="key">
         	<input type="text" name="n">
@@ -104,7 +104,21 @@
     </form>
 
 
+<script type="text/javascript">
+	var myForm = document.getElementById('searchform');
 
+myForm.addEventListener('submit', function () {
+    var allInputs = myForm.getElementsByTagName('input');
+
+    for (var i = 0; i < allInputs.length; i++) {
+        var input = allInputs[i];
+
+        if (input.name && !input.value) {
+            input.name = '';
+        }
+    }
+});
+</script>
 <!--<script src="{% static 'js/add.js' %}"></script>-->
 </body>
 </html>
