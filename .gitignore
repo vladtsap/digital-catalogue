@@ -117,3 +117,4 @@ venv.bak/
 .pyc
 __pycache__/
 *.pyc
+.DS_Store
