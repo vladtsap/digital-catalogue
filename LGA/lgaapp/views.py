@@ -43,15 +43,57 @@ def BookAdd(request):
 #     else:
 #         return render(request,"search/console.html",{})
 
+def cap(x):
+    if isinstance(x[1][0], str):
+        return (x[0], x[1][0].capitalize())
+    else:
+        return (x[0], x[1][0])
+
+
 def Search(request):
     return render_to_response('search.html')
 
 
 def SearchResult(request):
-    if 'q' in request.GET and request.GET['q']:
-        q = request.GET['q'].capitalize()
-        books = Book.objects.filter(name__icontains=q)
-        half = Book.objects.filter(name__istartswith=q[:int(len(q)/2)])
+    if request.GET:
+        q = dict(request.GET)
+        q = dict(map(cap, list(zip(list(q.keys()), q.values()))))
+        try:
+            q['ser'] = int(q['ser'])
+        except:
+            pass
+
+        try:
+            q['invnum'] = int(q['invnum'])
+        except:
+            pass
+
+        try:
+            q['ciph'] = int(q['ciph'])
+        except:
+            pass
+
+        books = Book.objects.filter(name__icontains=q['n'],
+                                    author__icontains=q['a']
+                                    # publication__icontains=,
+                                    # description__icontains=,
+                                    # series__icontains=,
+                                    # personality__icontains=,
+                                    # additional__icontains=,
+                                    # isbn__icontains=,
+                                    # inventory_number__icontains=,
+                                    # cipher__icontains=,
+                                    # year__icontains=,
+                                    # place__icontains=,
+                                    # language__icontains=,
+                                    # country__icontains=,
+                                    # subject__icontains=,
+                                    # art__icontains=,
+                                    # group__icontains=
+                                    )
+
+        half = Book.objects.filter(name__istartswith=q['n'][:int(len(q) / 2)],
+                                   author__istartswith=q['a'][:int(len(q) / 2)])
         books = books | half
         return render_to_response('search_results.html',
                                   {'books': books, 'query': q})
