@@ -1,16 +1,17 @@
 {% load static %}
 <!doctype html>
-
 <html lang="uk">
 <head>
   <meta charset="utf-8">
 {% for book in books %}
   <title>Деталі книги {{ book.name }}</title>
   {% endfor %}
-  <link rel="stylesheet" href="{% static 'css/book.css' %}">
-  <script src="script.js"></script>
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/about/style.css' %}">
 </head>
 <body>
+<div class="container">
+	<h1><a href="/">Проект "Бібліотека"</a></h1><br><br>
 	<div id="name">
 		<div class="value">Назва:</div>
 		{% for book in books %}
@@ -113,6 +114,7 @@
     	<div class="key">{{ book.country }}</div>
 		{% endfor %}
 	</div>
+</div>
 </body>
 </html>
 

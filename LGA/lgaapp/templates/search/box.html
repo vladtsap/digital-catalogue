@@ -5,13 +5,16 @@
 <head>
   <meta charset="utf-8">
   <title>Знайти книгу</title>
-  <link rel="stylesheet" href="{% static 'css/add.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/box/style.css' %}">
 </head>
 <body>
-	<h1>Знайти книгу</h1>
+    <div class="container">
+    <h1><a href="/">Проект "Бібліотека"</a></h1>
+	<h3>Знайти книгу</h3>
     
 
-<form id= "searchform" action="/search-result/" method="get">
+<form id= "searchform" action="/search/result/" method="get">
         <div class="value">Назва:</div>
         <div class="key">
         	<input type="text" name="n">
@@ -104,7 +107,7 @@
     </form>
 
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
 	var myForm = document.getElementById('searchform');
 
 myForm.addEventListener('submit', function () {
@@ -118,8 +121,9 @@ myForm.addEventListener('submit', function () {
         }
     }
 });
-</script>
+</script>-->
 <!--<script src="{% static 'js/add.js' %}"></script>-->
+</div>
 </body>
 </html>
 

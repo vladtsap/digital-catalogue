@@ -1,6 +1,9 @@
 .value {
 	display: inline-block;
+	color: blue;
 }
+
 .key{
+	color: red;
 	display: inline-block;
 }

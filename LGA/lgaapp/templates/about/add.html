@@ -5,14 +5,19 @@
 <head>
   <meta charset="utf-8">
   <title>Додати книгу</title>
-  <link rel="stylesheet" href="{% static 'css/add.css' %}">
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/add/style.css' %}">
 </head>
 <body>
-	<h1>Додати книгу</h1>
+<div class="container">
+	<h1><a href="/">Проект "Бібліотека"</a></h1><br><br>
+
+	<h3>Додати книгу</h3>
     <form method="POST">{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Зберегти</button>
+        <button class="btn btn-primary" type="submit">Зберегти</button>
     </form>
-<script src="{% static 'js/add.js' %}"></script>
+</div>
+<script src="{% static 'js/add/script.js' %}"></script>
 </body>
 </html>

@@ -4,17 +4,13 @@
 <html lang="uk">
 <head>
   <meta charset="utf-8">
-
   <title>Результати пошуку</title>
-  <!--<link rel="stylesheet" href="{% static 'css/book.css' %}">
-  <script src="script.js"></script>-->
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/result/style.css' %}">
 </head>
 <body>
-	
-<form action="/search-result/" method="get">
-        <!--<input type="text" name="q" value="{{ query }}">
-        <input type="submit" value="Search">-->
-    </form>
+	<div class="container">
+  <h1><a href="/">Проект "Бібліотека"</a></h1><br><br>
 
   <p>You searched for: <strong>{{ query }}</strong></p>
 
@@ -28,6 +24,7 @@
 {% else %}
     <p>No books matched your search criteria.</p>
 {% endif %}
+</div>
 </body>
 </html>
 

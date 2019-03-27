@@ -50,8 +50,8 @@ def cap(x):
         return (x[0], x[1][0])
 
 
-def Search(request):
-    return render_to_response('search.html')
+def SearchBox(request):
+    return render_to_response('search/box.html')
 
 
 def SearchResult(request):
@@ -95,7 +95,7 @@ def SearchResult(request):
         half = Book.objects.filter(name__istartswith=q['n'][:int(len(q) / 2)],
                                    author__istartswith=q['a'][:int(len(q) / 2)])
         books = books | half
-        return render_to_response('search_results.html',
+        return render_to_response('search/results.html',
                                   {'books': books, 'query': q})
     else:
         return HttpResponse('Please submit a search term.')
