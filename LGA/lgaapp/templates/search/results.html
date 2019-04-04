@@ -18,7 +18,7 @@
     <p>Found {{ books|length }} book{{ books|pluralize }}.</p>
     <ul>
         {% for book in books %}
-        <li>{{ book.name }}. {{ book.author }}. {{ book.year }} р. <a href="/about/{{ book.slug }}">Детальшіше</a></li>
+        <li>{{ book.name }}. {{ book.author }}. {{ book.year }} р. <a href="/about/{{ book.slug }}">Детальніше</a></li>
         {% endfor %}
     </ul>
 {% else %}
