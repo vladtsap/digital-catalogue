@@ -16,6 +16,12 @@ def BookView(request, pk):
         # 'arts': arts
     })
 
+def BookEdit(request, pk):
+    return render(request, 'about/edit.html')
+
+def BookDelete(request, pk):
+    return render(request, 'about/delete.html')
+
 
 def Index(request):
     return render(request, 'index.html')
