@@ -24,8 +24,9 @@ def BookEdit(request, pk):
         book = form.save(commit=False)
         book.save()
         return redirect('about-book', pk=book.slug)
-    
-    return render(request, 'about/edit.html')
+    else:
+        form = AddBook()
+        return render(request, 'about/edit.html', {'form': form})
 
 def BookDelete(request, pk):
     if request.method == "POST":
@@ -120,11 +121,11 @@ def SearchResult(request):
                             )
 
         if q['n'] != '':
-            half = Book.objects.filter(name__istartswith=q['n'][:int(len(q) / 2)])
+            half = Book.objects.filter(name__istartswith=q['n'][:int(len(q['n']) / 2)])
             books = books | half
 
         if q['a'] != '':
-            half = Book.objects.filter(author__istartswith=q['a'][:int(len(q) / 2)])
+            half = Book.objects.filter(author__istartswith=q['a'][:int(len(q['a']) / 2)])
             books = books | half
 
         if q['ser'] != -1:
