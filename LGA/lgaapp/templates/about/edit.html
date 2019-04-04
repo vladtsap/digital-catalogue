@@ -13,11 +13,10 @@
 	<h1><a href="/">Проект "Бібліотека"</a></h1><br><br>
 
 	<h3>Редагувати книгу</h3>
-    <form id= "editform" action="/" method="POST">{% csrf_token %}
-        <div class="value">Назва:</div>
+    <form method="POST">{% csrf_token %}
+        <div class="value">{{form.name.value}}:</div>
         <div class="key">
           {{form.name}}
-
         </div>
         <div class="value">Автор:</div>
         <div class="key">

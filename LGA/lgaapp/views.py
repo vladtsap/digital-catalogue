@@ -26,6 +26,7 @@ def BookEdit(request, pk):
         return redirect('about-book', pk=book.slug)
     else:
         form = AddBook()
+        #form.name.value = "Hello"
         return render(request, 'about/edit.html', {'form': form})
 
 def BookDelete(request, pk):
