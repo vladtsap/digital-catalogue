@@ -1,0 +1,110 @@
+{% load static %}
+<!doctype html>
+
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>Редагувати книгу</title>
+  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'css/add/style.css' %}">
+</head>
+<body>
+<div class="container">
+	<h1><a href="/">Проект "Бібліотека"</a></h1><br><br>
+
+	<h3>Редагувати книгу</h3>
+    <form id= "editform" action="/" method="POST">{% csrf_token %}
+        <div class="value">Назва:</div>
+        <div class="key">
+          {{form.name}}
+
+        </div>
+        <div class="value">Автор:</div>
+        <div class="key">
+          <input type="text" name="a">
+        </div>
+        
+        <div class="value">Видання:</div>
+        <div class="key">
+          <input type="text" name="publ">
+        </div>
+        
+        <div class="value">Опис:</div>
+        <div class="key">
+          <input type="text" name="desc">
+        </div>
+        
+        <div class="value">Серія:</div>
+        <div class="key">
+          <input type="number" name="ser">
+        </div>
+        
+        <div class="value">Персоналія:</div>
+        <div class="key">
+          <input type="text" name="pers">
+        </div>
+        
+        <div class="value">ISBN:</div>
+        <div class="key">
+          <input type="text" name="isbn">
+        </div>
+        
+        <div class="value">Інвентарний номер:</div>
+        <div class="key">
+          <input type="number" name="invnum">
+        </div>
+                
+        <div class="value">Шифр книги:</div>
+        <div class="key">
+          <input type="number" name="ciph">
+        </div>
+                
+        <div class="value">Рік з:</div>
+        <div class="key">
+          <input type="text" name="yfr">
+        </div>
+                
+        <div class="value">Рік до:</div>
+        <div class="key">
+          <input type="text" name="yto">
+        </div>
+                
+        <div class="value">Місцезнаходження:</div>
+        <div class="key">
+          <input type="text" name="plc">
+        </div>
+                
+        <div class="value">Мова:</div>
+        <div class="key">
+          <input type="text" name="lang">
+        </div>
+
+        <div class="value">Групи:</div>
+        <div class="key">
+          <input type="text" name="gr">
+        </div>
+                
+        <div class="value">Тематика:</div>
+        <div class="key">
+          <input type="text" name="subj">
+        </div>
+                
+        <div class="value">Мистецтво:</div>
+        <div class="key">
+          <input type="text" name="art">
+        </div>
+                
+        <div class="value">Країна:</div>
+        <div class="key">
+          <input type="text" name="cntr">
+        </div>
+        
+
+
+
+        <input type="submit" value="Update book">
+    </form>
+</div>
+<script src="{% static 'js/add/script.js' %}"></script>
+</body>
+</html>
