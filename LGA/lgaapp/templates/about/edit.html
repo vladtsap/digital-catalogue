@@ -13,7 +13,7 @@
 	<h1><a href="/">Проект "Бібліотека"</a></h1><br><br>
 
 	<h3>Редагувати книгу</h3>
-    <form method="POST">{% csrf_token %}
+    <form method="PUT">{% csrf_token %}
         <{{ form.as_p }}
         </div>
         

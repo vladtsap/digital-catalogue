@@ -17,7 +17,7 @@ def BookView(request, pk):
     })
 
 def BookEdit(request, pk):
-    if request.method == "POST":
+    if request.method == "PUT":
         Book.objects.filter(slug=pk).delete()
 
         form = AddBook(request.POST)
@@ -30,10 +30,10 @@ def BookEdit(request, pk):
         return render(request, 'about/edit.html', {'form': form})
 
 def BookDelete(request, pk):
-    if request.method == "POST":
+    if request.method == "DELETE":
         Book.objects.filter(slug=pk).delete()
 
-    return render(request, 'about/delete.html')
+    return redirect('index')
 
 
 def Index(request):
