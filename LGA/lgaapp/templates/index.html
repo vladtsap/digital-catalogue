@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <title>Головна сторінка</title>
   <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-  <link rel="stylesheet" href="{% static 'css/index/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 <div class="container">
@@ -16,7 +16,7 @@
 	<br><br>
 	<a href="{% url 'add-book' %}" class="btn btn-primary" >Додати книгу</a>
 	<br><br>
-	<a href="#" class="btn btn-primary">Всі книги</a>
+	<a href="/search/result/?n=&a=&publ=&desc=&ser=&pers=&isbn=&invnum=&ciph=&yfr=&yto=&plc=&lang=&cntr=&subj=&art=&gr=" class="btn btn-primary">Всі книги</a>
 	
 	<br><br><br><br>
 	<h5>Переглянути приклади книги</h5>

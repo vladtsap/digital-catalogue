@@ -17,7 +17,7 @@ def BookView(request, pk):
     })
 
 def BookEdit(request, pk):
-    if request.method == "PUT":
+    if request.method == "POST":
         Book.objects.filter(slug=pk).delete()
 
         form = AddBook(request.POST)
@@ -25,8 +25,26 @@ def BookEdit(request, pk):
         book.save()
         return redirect('about-book', pk=book.slug)
     else:
-        form = AddBook()
-        #form.name.value = "Hello"
+        book = Book.objects.filter(slug=pk).get()
+        form = AddBook(initial={'name': book.name,
+                                'author': book.author,
+                                'publication' : book.publication,
+                                'description' : book.description,
+                                'series' : book.series,
+                                'personality' : book.personality,
+                                'additional' : book.additional,
+                                'isbn' : book.isbn,
+                                'inventory_number' : book.inventory_number,
+                                'cipher' : book.cipher,
+                                'year' : book.year,
+                                'place' : book.place,
+                                'language' : book.language,
+                                'country' : book.country,
+                                'subject' : book.subject,
+                                'art' : book.art,
+                                'group' : book.group,
+                                'slug' : book.slug
+        })
         return render(request, 'about/edit.html', {'form': form})
 
 def BookDelete(request, pk):

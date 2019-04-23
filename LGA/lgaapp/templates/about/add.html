@@ -1,23 +1,34 @@
-{% load static %}
+{% load static %} {% load crispy_forms_tags %}
 <!doctype html>
 
 <html lang="uk">
-<head>
-  <meta charset="utf-8">
-  <title>Додати книгу</title>
-  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-  <link rel="stylesheet" href="{% static 'css/add/style.css' %}">
-</head>
-<body>
-<div class="container">
-	<h1><a href="/">Проект "Бібліотека"</a></h1><br><br>
 
-	<h3>Додати книгу</h3>
-    <form method="POST">{% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-primary" type="submit">Зберегти</button>
-    </form>
-</div>
-<script src="{% static 'js/add/script.js' %}"></script>
+<head>
+    <meta charset="utf-8">
+    <title>Додати книгу</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <h1><a href="/">Проект "Бібліотека"</a></h1>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-8 order-md-4">
+                <h4 class="mb-3">Додати книгу</h4> {% crispy form %}
+            </div>
+        </div>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; 2019 Проект "Бібліотека"</p>
+        </footer>
+    </div>
+
+
+
+    <script src="{% static 'js/add/script.js' %}"></script>
 </body>
+
 </html>

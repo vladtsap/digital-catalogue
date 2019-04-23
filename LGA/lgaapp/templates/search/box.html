@@ -2,113 +2,108 @@
 <!doctype html>
 
 <html lang="uk">
+
 <head>
-  <meta charset="utf-8">
-  <title>Знайти книгу</title>
-  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-  <link rel="stylesheet" href="{% static 'css/box/style.css' %}">
+    <meta charset="utf-8">
+    <title>Знайти книгу</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
+
     <div class="container">
-    <h1><a href="/">Проект "Бібліотека"</a></h1>
-	<h3>Знайти книгу</h3>
+        <h1><a href="/">Проект "Бібліотека"</a></h1>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-8 order-md-4">
+                <h4 class="mb-3">Знайти книгу</h4>
+                <form id="searchform" action="/search/result/" method="get" class="needs-validation" novalidate >
+                    <div class="mb-3 col-md-6">
+                        <label for="name">Назва</label>
+                        <input type="text" class="form-control" id="name" name="n">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="author">Автор</label>
+                        <input type="text" class="form-control" id="author" name="a">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="publication">Видання</label>
+                        <input type="text" class="form-control" id="publication" name="publ">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="description">Опис</label>
+                        <input type="text" class="form-control" id="description" name="desc">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="series">Серія</label>
+                        <input type="text" class="form-control" id="series" name="ser">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="personality">Персоналія</label>
+                        <input type="text" class="form-control" id="personality" name="pers">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="isbn">ISBN</label>
+                        <input type="text" class="form-control" id="isbn" name="isbn">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="inventory_number">Інвентарний номер</label>
+                        <input type="text" class="form-control" id="inventory_number" name="invnum">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="cipher">Шифр книги</label>
+                        <input type="text" class="form-control" id="cipher" name="ciph">
+                    </div>
+                    <div class="row col-md-6">
+                        <div class="col-md-6 mb-3">
+                            <label for="year-from">З року</label>
+                            <input type="text" class="form-control" id="year-from" name="yfr">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="year-to">До року</label>
+                            <input type="text" class="form-control" id="year-to" name="yto">
+                        </div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="place">Місцезнаходження</label>
+                        <input type="text" class="form-control" id="place" name="plc">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="language">Мова</label>
+                        <input type="text" class="form-control" id="language" name="lang">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="country">Країна</label>
+                        <input type="text" class="form-control" id="country" name="cntr">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="subject">Тематика</label>
+                        <input type="text" class="form-control" id="subject" name="subj">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="art">Мистецтво</label>
+                        <input type="text" class="form-control" id="art" name="art">
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="group">Групи</label>
+                        <input type="text" class="form-control" id="group" name="gr">
+                    </div>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Пошук</button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; 2019 Проект "Бібліотека"</p>
+        </footer>
+    </div>
+
     
 
-<form id= "searchform" action="/search/result/" method="get">
-        <div class="value">Назва:</div>
-        <div class="key">
-        	<input type="text" name="n">
-        </div>
-        
-        <div class="value">Автор:</div>
-        <div class="key">
-        	<input type="text" name="a">
-        </div>
-        
-        <div class="value">Видання:</div>
-        <div class="key">
-        	<input type="text" name="publ">
-        </div>
-        
-        <div class="value">Опис:</div>
-        <div class="key">
-        	<input type="text" name="desc">
-        </div>
-        
-        <div class="value">Серія:</div>
-        <div class="key">
-        	<input type="number" name="ser">
-        </div>
-        
-        <div class="value">Персоналія:</div>
-        <div class="key">
-        	<input type="text" name="pers">
-        </div>
-        
-        <div class="value">ISBN:</div>
-        <div class="key">
-        	<input type="text" name="isbn">
-        </div>
-        
-        <div class="value">Інвентарний номер:</div>
-        <div class="key">
-        	<input type="number" name="invnum">
-        </div>
-                
-        <div class="value">Шифр книги:</div>
-        <div class="key">
-        	<input type="number" name="ciph">
-        </div>
-                
-        <div class="value">Рік з:</div>
-        <div class="key">
-        	<input type="text" name="yfr">
-        </div>
-                
-        <div class="value">Рік до:</div>
-        <div class="key">
-        	<input type="text" name="yto">
-        </div>
-                
-        <div class="value">Місцезнаходження:</div>
-        <div class="key">
-        	<input type="text" name="plc">
-        </div>
-                
-        <div class="value">Мова:</div>
-        <div class="key">
-        	<input type="text" name="lang">
-        </div>
-
-        <div class="value">Групи:</div>
-        <div class="key">
-        	<input type="text" name="gr">
-        </div>
-                
-        <div class="value">Тематика:</div>
-        <div class="key">
-        	<input type="text" name="subj">
-        </div>
-                
-        <div class="value">Мистецтво:</div>
-        <div class="key">
-        	<input type="text" name="art">
-        </div>
-                
-        <div class="value">Країна:</div>
-        <div class="key">
-        	<input type="text" name="cntr">
-        </div>
-        
-
-
-
-        <input type="submit" value="Search">
-    </form>
-
-
-<!--<script type="text/javascript">
-	var myForm = document.getElementById('searchform');
+        <!--<script type="text/javascript">
+    var myForm = document.getElementById('searchform');
 
 myForm.addEventListener('submit', function () {
     var allInputs = myForm.getElementsByTagName('input');
@@ -122,13 +117,8 @@ myForm.addEventListener('submit', function () {
     }
 });
 </script>-->
-<!--<script src="{% static 'js/add.js' %}"></script>-->
-</div>
+        <!--<script src="{% static 'js/add.js' %}"></script>-->
+    </div>
 </body>
+
 </html>
-
-
-
-
-
- 

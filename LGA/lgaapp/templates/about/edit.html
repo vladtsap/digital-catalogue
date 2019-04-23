@@ -1,28 +1,32 @@
-{% load static %}
+{% load static %} 
 <!doctype html>
 
 <html lang="uk">
+
 <head>
-  <meta charset="utf-8">
-  <title>Редагувати книгу</title>
-  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-  <link rel="stylesheet" href="{% static 'css/add/style.css' %}">
+    <meta charset="utf-8">
+    <title>Редагувати книгу</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
-<div class="container">
-	<h1><a href="/">Проект "Бібліотека"</a></h1><br><br>
-
-	<h3>Редагувати книгу</h3>
-    <form method="PUT">{% csrf_token %}
-        <{{ form.as_p }}
+    <div class="container">
+        <h1><a href="/">Проект "Бібліотека"</a></h1>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-8 order-md-4">
+                <h4 class="mb-3">Редагувати книгу</h4> {% crispy form %}
+            </div>
         </div>
-        
 
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; 2019 Проект "Бібліотека"</p>
+        </footer>
+    </div>
 
-
-        <input type="submit" value="Update book">
-    </form>
-</div>
-<script src="{% static 'js/add/script.js' %}"></script>
+    <script src="{% static 'js/add/script.js' %}"></script>
 </body>
+
 </html>
