@@ -48,8 +48,8 @@ def BookEdit(request, pk):
         return render(request, 'about/edit.html', {'form': form})
 
 def BookDelete(request, pk):
-    if request.method == "DELETE":
-        Book.objects.filter(slug=pk).delete()
+    #if request.method == "DELETE":
+    Book.objects.filter(slug=pk).delete()
 
     return redirect('index')
 

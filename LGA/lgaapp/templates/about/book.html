@@ -84,7 +84,16 @@
 	<br><br>
 	
 	<a href="/about/{{ book.slug }}/edit" class="btn btn-primary">Редагувати</a>
-	<a href="/about/{{ book.slug }}/delete" class="btn btn-secondary">Видалити</a>
+	<button onclick="confirmDelete()" class="btn btn-secondary">Видалити</button> 
+	<script>
+function confirmDelete() {
+  var del = confirm("Ви видаляєте книгу з бібліотеки.\n\nВсе правильно?");
+  if (del == true) {
+    window.location.href = "/about/{{ book.slug }}/delete";
+  } else {
+  }
+}
+</script>
 	{% endfor %}
 </div>
 </body>
