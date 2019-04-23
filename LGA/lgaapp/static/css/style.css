@@ -7,3 +7,7 @@
 	color: red;
 	display: inline-block;
 }
+
+.asteriskField {
+    display: none;
+}
