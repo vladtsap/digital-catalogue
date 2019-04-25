@@ -4,27 +4,57 @@
 <html lang="uk">
 <head>
   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Головна сторінка</title>
   <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 </head>
-<body>
-<div class="container">
-	<h1><a href="/">Проект "Бібліотека"</a></h1><br><br>
-	
-	<a href="/search" class="btn btn-primary">Пошук</a>
-	<br><br>
-	<a href="{% url 'add-book' %}" class="btn btn-primary" >Додати книгу</a>
-	<br><br>
-	<a href="/search/result/?n=&a=&publ=&desc=&ser=&pers=&isbn=&invnum=&ciph=&yfr=&yto=&plc=&lang=&cntr=&subj=&art=&gr=" class="btn btn-primary">Всі книги</a>
-	
-	<br><br><br><br>
-	<h5>Переглянути приклади книги</h5>
-	<a href="/about/kobzar-65156-5456" class="btn btn-primary">Перша</a>
-	<a href="/about/zahar-berkut-88005553535" class="btn btn-primary">Друга</a>
-	<a href="/about/starij-i-more-978-0-684-80122-3/" class="btn btn-primary">Третя</a>
-	<a href="/about/majster-i-margarita-794613/" class="btn btn-primary">Четверта</a>
+<body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">Проект "Бібліотека"</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link active" href="/">Головна сторінка</a>
+        <a class="nav-link" href="/search/result/?n=&a=&publ=&desc=&ser=&pers=&isbn=&invnum=&ciph=&yfr=&yto=&plc=&lang=&cntr=&subj=&art=&gr=">Всі книги</a>
+      </nav>
+    </div>
+  </header>
+
+  <main role="main" class="inner cover">
+    <h1 class="cover-heading">Проект "Бібліотека"</h1>
+    <p class="lead">Тут Ви зможете знайти будь-яку книгу або додати нову ;)</p>
+    <p class="lead">
+      <a href="{% url 'add-book' %}" class="btn btn-lg btn-secondary">Додати книгу</a>
+    </p>
+    <p class="lead">
+      <a href="/search" class="btn btn-lg btn-secondary">Пошук книги</a>
+    </p>
+  </main>
+
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>Проект "Бібліотека"</p>
+    </div>
+  </footer>
 </div>
+</body>
 </body>
 </html>
 
