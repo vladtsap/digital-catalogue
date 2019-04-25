@@ -15,7 +15,7 @@
   <!--<p>You searched for: <strong>{{ query }}</strong></p>-->
 
 {% if books %}
-    <p>Found {{ books|length }} book{{ books|pluralize }}.</p>
+    <p>Знайдено {{ books|length }} книги{{ books|pluralize }}.</p>
     <ul>
         {% for book in books %}
         <li>{{ book.name }}. {{ book.author }}. {{ book.year }} р. <a href="/about/{{ book.slug }}">Детальніше</a></li>
