@@ -1,105 +1,48 @@
-{% load static %}
+{% load static %}{% load crispy_forms_tags %}
 <!doctype html>
 
 <html lang="uk">
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Знайти книгу</title>
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dynamic/style.css' %}">
 </head>
 
 <body>
-
+ <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-        <h1><a href="/">Проект "Бібліотека"</a></h1>
-        <br>
-        <br>
-        <div class="row">
+      <a class="navbar-brand" href="/">Електронний каталог</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Головна</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/new">Додати книгу</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/search">Пошук книги</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header>
+    <div class="container h-100">
+        <div class="row justify-content-md-center">
             <div class="col-md-8 order-md-4">
                 <h4 class="mb-3">Знайти книгу</h4>
-                <form id="searchform" action="/search/result/" method="get" class="needs-validation" novalidate >
-                    <div class="mb-3 col-md-6">
-                        <label for="name">Назва</label>
-                        <input type="text" class="form-control" id="name" name="n">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="author">Автор</label>
-                        <input type="text" class="form-control" id="author" name="a">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="publication">Видання</label>
-                        <input type="text" class="form-control" id="publication" name="publ">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="description">Опис</label>
-                        <input type="text" class="form-control" id="description" name="desc">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="series">Серія</label>
-                        <input type="text" class="form-control" id="series" name="ser">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="personality">Персоналія</label>
-                        <input type="text" class="form-control" id="personality" name="pers">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="isbn">ISBN</label>
-                        <input type="text" class="form-control" id="isbn" name="isbn">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="inventory_number">Інвентарний номер</label>
-                        <input type="text" class="form-control" id="inventory_number" name="invnum">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="cipher">Шифр книги</label>
-                        <input type="text" class="form-control" id="cipher" name="ciph">
-                    </div>
-                    <div class="row col-md-6">
-                        <div class="col-md-6 mb-3">
-                            <label for="year-from">З року</label>
-                            <input type="text" class="form-control" id="year-from" name="yfr">
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="year-to">До року</label>
-                            <input type="text" class="form-control" id="year-to" name="yto">
-                        </div>
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="place">Місцезнаходження</label>
-                        <input type="text" class="form-control" id="place" name="plc">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="language">Мова</label>
-                        <input type="text" class="form-control" id="language" name="lang">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="country">Країна</label>
-                        <input type="text" class="form-control" id="country" name="cntr">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="subject">Тематика</label>
-                        <input type="text" class="form-control" id="subject" name="subj">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="art">Мистецтво</label>
-                        <input type="text" class="form-control" id="art" name="art">
-                    </div>
-                    <div class="mb-3 col-md-6">
-                        <label for="group">Групи</label>
-                        <input type="text" class="form-control" id="group" name="gr">
-                    </div>
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Пошук</button>
-                </form>
+                {% crispy form %}
             </div>
         </div>
+    </div>
+</header>
 
         <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">&copy; 2019 Проект "Бібліотека"</p>
+            <p class="mb-1">&copy; 2019 Електронний каталог</p>
         </footer>
-    </div>
-
     
 
         <!--<script type="text/javascript">
