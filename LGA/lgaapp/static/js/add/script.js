@@ -118,8 +118,8 @@ function url_slug(s, opt) {
 
 
 function makeSlug() {
-	document.getElementById("id_slug").value = url_slug(document.getElementById("id_name").value + '-'+ document.getElementById("id_isbn").value);
+	document.getElementById("id_slug").value = url_slug(document.getElementById("id_name").value + '-'+ document.getElementById("id_inventory_number").value);
 }
    	document.getElementById("id_slug").readOnly = "true";
    	document.getElementById("id_name").onkeyup = function(){makeSlug()};
-   	document.getElementById("id_isbn").onkeyup = function(){makeSlug()};
+   	document.getElementById("id_inventory_number").onkeyup = function(){makeSlug()};
