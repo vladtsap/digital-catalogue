@@ -3,15 +3,35 @@
 <html lang="uk">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {% for book in books %}
   <title>Деталі книги {{ books.name }}</title>
-  
-  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/dynamic/style.css' %}">
 </head>
-<body>
-<div class="container">
-	<h1><a href="/">Проект "Бібліотека"</a></h1><br><br>
+<body onload='beautify()'>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="/">Електронний каталог</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Головна</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/new">Додати книгу</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/search">Пошук книги</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header>
+    <div class="container h-100">
+    	<div class="row justify-content-md-center">
+            <div class="col-md-8 order-md-4">
+                <h4 class="mb-3">Деталі книги {{ books.name }}</h4> 
 	<div id="name">
 		<div class="value">Назва:</div>
     	<div class="key">{{ book.name }}</div>
@@ -70,7 +90,6 @@
 	</div>
 	<div id="subject">
 		<div class="value">Тематика:</div>
-		
     	<div class="key">{{ book.subject }}</div>
 	</div>
 	<div id="art">
@@ -82,9 +101,15 @@
     	<div class="key">{{ book.country }}</div>
 	</div>
 	<br><br>
-	
 	<a href="/about/{{ book.slug }}/edit" class="btn btn-primary">Редагувати</a>
 	<button onclick="confirmDelete()" class="btn btn-secondary">Видалити</button> 
+</div>
+</div>
+</div>
+</header>
+<footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">&copy; 2019 Електронний каталог</p>
+        </footer>
 	<script>
 function confirmDelete() {
   var del = confirm("Ви видаляєте книгу з бібліотеки.\n\nВсе правильно?");
@@ -93,9 +118,61 @@ function confirmDelete() {
   } else {
   }
 }
+function beautify() {
+	if (document.getElementById("name").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("name").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("author").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("author").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("publication").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("publication").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("description").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("description").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("series").getElementsByClassName("key")[0].innerText == 'None'){
+		document.getElementById("series").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("personality").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("personality").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("additional").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("additional").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("isbn").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("isbn").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("inventory_number").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("inventory_number").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("cipher").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("cipher").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("year").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("year").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("place").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("place").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("language").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("language").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("group").getElementsByClassName("key")[0].innerText == 'None'){
+		document.getElementById("group").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("subject").getElementsByClassName("key")[0].innerText == 'None'){
+		document.getElementById("subject").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("art").getElementsByClassName("key")[0].innerText == 'None'){
+		document.getElementById("art").setAttribute("style", "display: none;");
+	}
+	if (document.getElementById("country").getElementsByClassName("key")[0].innerText == ''){
+		document.getElementById("country").setAttribute("style", "display: none;");
+	}
+}
 </script>
 	{% endfor %}
-</div>
 </body>
 </html>
 

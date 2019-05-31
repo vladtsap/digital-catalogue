@@ -4,18 +4,35 @@
 <html lang="uk">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Результати пошуку</title>
-  <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/dynamic/style.css' %}">
 </head>
-<body>
-	<div class="container">
-  <h1><a href="/">Проект "Бібліотека"</a></h1><br><br>
-
+<body >
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="/">Електронний каталог</a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Головна</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/new">Додати книгу</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/search">Пошук книги</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header>
+	<div class="container h-100">
   <!--<p>You searched for: <strong>{{ query }}</strong></p>-->
 
 {% if books %}
-    <p>Знайдено {{ books|length }} книги{{ books|pluralize }}.</p>
+    <p>Знайдено книг: {{ books|length }}</p>
     <ul>
         {% for book in books %}
         <li>{{ book.name }}. {{ book.author }}. {{ book.year }} р. <a href="/about/{{ book.slug }}">Детальніше</a></li>
@@ -25,6 +42,7 @@
     <p>No books matched your search criteria.</p>
 {% endif %}
 </div>
+</header>
 </body>
 </html>
 
