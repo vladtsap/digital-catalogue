@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {% for book in books %}
-  <title>Деталі книги {{ books.name }}</title>
+  <title>Деталі книги {{ book.name }}</title>
   <link rel="stylesheet" href="{% static 'css/dynamic/style.css' %}">
 </head>
 <body onload='beautify()'>
@@ -31,7 +31,7 @@
     <div class="container h-100">
     	<div class="row justify-content-md-center">
             <div class="col-md-8 order-md-4">
-                <h4 class="mb-3">Деталі книги {{ books.name }}</h4> 
+                <h4 class="mb-3">Деталі книги {{ book.name }}</h4> 
 	<div id="name">
 		<div class="value">Назва:</div>
     	<div class="key">{{ book.name }}</div>
