@@ -6,46 +6,38 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Додати книгу</title>
-    <link rel="stylesheet" href="{% static 'css/dynamic/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="/">Електронний каталог</a>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <a class="navbar-brand js-scroll-trigger" href="/">Електронний каталог</a>
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Головна</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/new">Додати книгу</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/search">Пошук книги</a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger active" href="{% url 'add-book' %}">Додати</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/search">Пошук</a>
+            </li>
         </ul>
-      </div>
     </div>
-  </nav>
-  <header>
+</nav>
+<header>
     <div class="container h-100">
         <div class="row justify-content-md-center">
             <div class="col-md-8 order-md-4">
-                <h4 class="mb-3">Додати книгу</h4> 
+                <h4 class="mb-3">Додати книгу</h4>
                 {% crispy form %}
             </div>
         </div>
     </div>
 </header>
-        <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">&copy; 2019 Електронний каталог</p>
-        </footer>
-    
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2020 Електронний каталог</p>
+</footer>
 
 
-
-    <script src="{% static 'js/add/script.js' %}"></script>
 </body>
 
 </html>

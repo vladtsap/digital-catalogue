@@ -3,46 +3,108 @@
 
 <html lang="uk">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Результати пошуку</title>
-  <link rel="stylesheet" href="{% static 'css/dynamic/style.css' %}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Результати пошуку</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
 </head>
-<body >
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+<body onload="pagination_url()">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="/">Електронний каталог</a>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <a class="navbar-brand js-scroll-trigger" href="/">Електронний каталог</a>
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="/">Головна</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/new">Додати книгу</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/search">Пошук книги</a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'add-book' %}">Додати</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="/search">Пошук</a>
+            </li>
         </ul>
-      </div>
     </div>
-  </nav>
-  <header>
-	<div class="container h-100">
-  <!--<p>You searched for: <strong>{{ query }}</strong></p>-->
+</nav>
+<header>
+    <div class="container h-100">
+        <!--<p>You searched for: <strong>{{ query }}</strong></p>-->
 
-{% if books %}
-    <p>Знайдено книг: {{ books|length }}</p>
-    <ul>
-        {% for book in books %}
-        <li>{{ book.name }}. {{ book.author }}. {{ book.year }} р. <a href="/about/{{ book.slug }}">Детальніше</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No books matched your search criteria.</p>
-{% endif %}
-</div>
+        {% if books %}
+            <p>Знайдено книг: {{ books_count }}</p>
+            <ul>
+                {% for book in books %}
+                    {% if book.year and book.author %}
+                        <li>{{ book.name }}. {{ book.author }}. {{ book.year }} р. <a href="/about/{{ book.pk }}">Детальніше</a></li>
+                    {% elif book.author %}
+                        <li>{{ book.name }}. {{ book.author }}. <a href="/about/{{ book.pk }}">Детальніше</a></li>
+                    {% elif book.year %}
+                        <li>{{ book.name }}. {{ book.year }} р. <a href="/about/{{ book.pk }}">Детальніше</a></li>
+                    {% else %}
+                        <li>{{ book.name }}. <a href="/about/{{ book.pk }}">Детальніше</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Не знайдено книг за вашим запитом</p>
+        {% endif %}
+        <nav aria-label="navigation">
+            <div id="pages"> Сторінка {{ books.number }} з {{ books.paginator.num_pages }}</div>
+            <ul class="pagination">
+
+                {% if prev_page %}
+                    <li class="page-item"><a class="page-link" id="prev" href="#">Попередня</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Попередня</a></li>
+                {% endif %}
+
+                <li class="page-item"><a class="page-link"> {{ books.number }} </a></li>
+
+                {% if next_page %}
+                    <li class="page-item"><a class="page-link" id="next" href="#">Наступна</a></li>
+                {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Наступна</a></li>
+                {% endif %}
+
+            </ul>
+        </nav>
+    </div>
 </header>
+
+<script>
+    function pagination_url() {
+        let url, query_string, search_params, next_num, next_url, next, prev_num, prev_url, prev;
+        url = new URL(window.location.href);
+        query_string = url.search;
+        search_params = new URLSearchParams(query_string);
+
+        {% if firstPage %}
+            next_num = 2;
+            search_params.append('page', next_num.toString());
+            url.search = search_params.toString();
+            next_url = url.toString();
+            next = document.getElementById('next');
+            next.setAttribute('href', next_url);
+
+        {% else %}
+            prev_num = parseInt(search_params.get('page')) - 1;
+            next_num = parseInt(search_params.get('page')) + 1;
+
+            {% if prev_page %}
+                search_params.set('page', prev_num.toString());
+                url.search = search_params.toString();
+                prev_url = url.toString();
+                prev = document.getElementById('prev');
+                prev.setAttribute('href', prev_url);
+            {% endif %}
+
+            {% if next_page %}
+                search_params.set('page', next_num.toString());
+                url.search = search_params.toString();
+                next_url = url.toString();
+                next = document.getElementById('next');
+                next.setAttribute('href', next_url);
+            {% endif %}
+
+        {% endif %}
+    }
+</script>
 </body>
 </html>
 

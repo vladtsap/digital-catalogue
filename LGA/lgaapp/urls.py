@@ -2,11 +2,11 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.Index, name='index'),
-    url(r'^about/(?P<pk>([a-zA-Z]+[-]?)+(\d+[-]?)+)/$', views.BookView, name='about-book'),
-    url(r'^about/(?P<pk>([a-zA-Z]+[-]?)+(\d+[-]?)+)/edit', views.BookEdit, name='edit-book'),
-    url(r'^about/(?P<pk>([a-zA-Z]+[-]?)+(\d+[-]?)+)/delete', views.BookDelete, name='delete-book'),
-	url(r'^new/$', views.BookAdd, name='add-book'),
-    url(r'^search/$', views.SearchBox, name='search-book'),
-	url(r'^search/result/$', views.SearchResult, name='search-result'),
+	url(r'^$', views.index, name='index'),
+	url(r'^about/(?P<pk>(.*?)+)/$', views.book_view, name='about-book'),
+	url(r'^about/(?P<pk>(.*?)+)/edit', views.book_edit, name='edit-book'),
+	url(r'^about/(?P<pk>(.*?)+)/delete', views.book_delete, name='delete-book'),
+	url(r'^add/$', views.book_add, name='add-book'),
+	url(r'^search/$', views.search_box, name='search-book'),
+	url(r'^search/result/$', views.search_result, name='search-result'),
 ]
