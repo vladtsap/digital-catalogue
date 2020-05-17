@@ -1,0 +1,15 @@
+[Unit]
+Description=LAG project
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/root/lag
+ExecStart=/usr/bin/python3 /root/lag/manage.py runserver 0:8000
+RestartSec=10
+Restart=always
+ 
+[Install]
+WantedBy=multi-user.target
