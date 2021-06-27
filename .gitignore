@@ -118,3 +118,4 @@ venv.bak/
 __pycache__/
 *.pyc
 .DS_Store
+LGA/private_settings.py
