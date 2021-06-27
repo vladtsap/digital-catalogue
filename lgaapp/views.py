@@ -1,58 +1,66 @@
-from django.http import HttpResponse
-from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404, redirect, render_to_response
-from .models import Book
-from .forms import AddBook, SearchBook
 import re
 
+from django.core.paginator import Paginator
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.views.decorators.http import require_http_methods
 
-def book_view(request, pk):
-	books = Book.objects.filter(pk=pk)
-	return render(request, 'about/book.html', {'books': books})
+from lgaapp.forms import SearchBook, AddBook
+from lgaapp.models import Book
 
 
-def book_edit(request, pk):
+@require_http_methods(['GET'])
+def index(request):
+	books_length = Book.objects.count()
+	return render(request, 'index.html', {'bookLength': books_length})
+
+
+@require_http_methods(['GET', 'DELETE'])
+def book_view_delete(request, pk):
+	if request.method == 'GET':
+		book = Book.objects.get(pk=pk)
+		return render(request, 'about/book.html', {'book': book})
+	elif request.method == 'DELETE':
+		Book.objects.get(pk=pk).delete()
+		return HttpResponse()
+
+
+@require_http_methods(['GET', 'POST'])
+def book_edit(request, pk):  # TODO: refactor
 	if request.method == "POST":
-		Book.objects.filter(pk=pk).delete()
+		Book.objects.get(pk=pk).delete()
 
 		form = AddBook(request.POST)
 		book = form.save(commit=False)
 		book.save()
 		return redirect('about-book', pk=book.pk)
 	else:
-		book = Book.objects.filter(pk=pk).get()
-		form = AddBook(initial={'name': book.name,
-								'author': book.author,
-								'publication': book.publication,
-								'description': book.description,
-								'series': book.series,
-								'personality': book.personality,
-								'additional': book.additional,
-								'isbn': book.isbn,
-								'inventory_number': book.inventory_number,
-								'cipher': book.cipher,
-								'year': book.year,
-								'place': book.place,
-								'language': book.language,
-								'country': book.country,
-								'subject': book.subject,
-								'art': book.art,
-								'group': book.group,
-								'slug': book.slug
-								})
+		book = Book.objects.get(pk=pk)
+		form = AddBook(
+			initial={
+				'name': book.name,
+				'author': book.author,
+				'publication': book.publication,
+				'description': book.description,
+				'series': book.series,
+				'personality': book.personality,
+				'additional': book.additional,
+				'isbn': book.isbn,
+				'inventory_number': book.inventory_number,
+				'cipher': book.cipher,
+				'year': book.year,
+				'place': book.place,
+				'language': book.language,
+				'country': book.country,
+				'subject': book.subject,
+				'art': book.art,
+				'group': book.group,
+			}
+		)
 		return render(request, 'about/edit.html', {'form': form})
 
 
-def book_delete(request, pk):
-	Book.objects.filter(pk=pk).delete()
-
-
-def index(request):
-	books = Book.objects.all()
-	booksLength = len(books)
-	return render(request, 'index.html', {'bookLength': booksLength})
-
-
+@require_http_methods(['GET', 'POST'])
 def book_add(request):
 	if request.method == "POST":
 		form = AddBook(request.POST)
@@ -64,6 +72,7 @@ def book_add(request):
 		return render(request, 'about/add.html', {'form': form})
 
 
+@require_http_methods(['GET'])
 def search_box(request):
 	form = SearchBook()
 	return render(request, 'search/box.html', {'form': form})
@@ -176,6 +185,7 @@ def filtering_search(query):
 	return result
 
 
+@require_http_methods(['GET'])
 def search_result(request):
 	if request.GET:
 		q = dict(request.GET)
@@ -186,14 +196,14 @@ def search_result(request):
 		books_count = books.__len__()
 		paginator = Paginator(books, 10)
 
-		firstPage = False
+		first_page = False
 		prev_page = False
 		next_page = False
 
 		try:
 			books = paginator.get_page(q['page'])
-		except:
-			firstPage = True
+		except KeyError:
+			first_page = True
 			q['page'] = 1
 			books = paginator.get_page(1)
 
@@ -203,9 +213,14 @@ def search_result(request):
 		if paginator.num_pages - int(q['page']) > 0:
 			next_page = True
 
-		return render_to_response('search/results.html',
-								  {'books': books, 'query': q, 'books_count': books_count,
-								   'prev_page': prev_page, 'next_page': next_page, 'firstPage': firstPage})
+		return render(
+			request,
+			'search/results.html',
+			{
+				'books': books, 'query': q, 'books_count': books_count,
+				'prev_page': prev_page, 'next_page': next_page, 'firstPage': first_page
+			}
+		)
 	else:
 		return HttpResponse('Please submit a search term.')
 
