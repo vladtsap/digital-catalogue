@@ -40,7 +40,7 @@ class AddBook(forms.ModelForm):
 		Field('series', autocomplete='off'),
 		Field('personality', autocomplete='off'),
 		Field('isbn', autocomplete='off'),
-		Field('inventory_number', autocomplete='off', required=True),
+		Field('inventory_number', autocomplete='off'),
 		Field('cipher', autocomplete='off'),
 		Field('year', autocomplete='off'),
 		Field('place', css_class='custom-select d-block w-100'),
