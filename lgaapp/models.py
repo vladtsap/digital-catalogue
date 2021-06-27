@@ -3,7 +3,6 @@ from django.db import models
 
 class Subject(models.Model):
 	name = models.CharField(max_length=200, db_index=True, unique=True)
-	slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
 	class Meta:
 		ordering = ['name']
@@ -16,7 +15,6 @@ class Subject(models.Model):
 
 class Art(models.Model):
 	name = models.CharField(max_length=200, db_index=True, unique=True)
-	slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
 	class Meta:
 		ordering = ['name']
@@ -29,7 +27,6 @@ class Art(models.Model):
 
 class Group(models.Model):
 	name = models.CharField(max_length=200, db_index=True, unique=True)
-	slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
 	class Meta:
 		ordering = ['name']
@@ -42,7 +39,6 @@ class Group(models.Model):
 
 class Place(models.Model):
 	name = models.CharField(max_length=200, db_index=True, unique=True)
-	slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
 	class Meta:
 		ordering = ['name']
@@ -71,7 +67,6 @@ class Book(models.Model):
 	subject = models.ForeignKey(Subject, max_length=200, verbose_name="Тематика", default=None, on_delete=models.CASCADE, null=True, blank=True)
 	art = models.ForeignKey(Art, max_length=200, verbose_name="Мистецтво", default=None, on_delete=models.CASCADE, null=True, blank=True)
 	group = models.ForeignKey(Group, max_length=200, verbose_name="Групи", default=None, on_delete=models.CASCADE, null=True, blank=True)
-	slug = models.SlugField(max_length=2000, db_index=True, blank=True)
 
 	class Meta:
 		ordering = ['name']

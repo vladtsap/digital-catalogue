@@ -1,7 +1,5 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field, Div
-from crispy_forms.bootstrap import (
-	PrependedText, PrependedAppendedText, FormActions)
 from django import forms
 
 from .models import Book, Search
@@ -27,7 +25,7 @@ class AddBook(forms.ModelForm):
 				  'art',
 				  'country',
 				  'group',
-				  'slug',)
+				  )
 
 	helper = FormHelper()
 	helper.form_method = 'POST'
