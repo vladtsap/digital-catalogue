@@ -115,8 +115,7 @@ venv.bak/
 .idea/
 *.pyc
 .pyc
-__pycache__/
-*.pyc
+
 .DS_Store
 LGA/private_settings.py
 db.sqlite3
