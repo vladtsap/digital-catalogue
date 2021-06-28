@@ -13,13 +13,13 @@
 <body onload='beautify()'>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/">Електронний каталог</a>
+        <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}">Електронний каталог</a>
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
             <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="{% url 'add-book' %}">Додати</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger active" href="/search">Пошук</a>
+                <a class="nav-link js-scroll-trigger active" href="{% url 'search-book' %}">Пошук</a>
             </li>
         </ul>
     </div>
@@ -36,7 +36,7 @@
 </header>
 
 <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2020 Електронний каталог</p>
+    <p class="mb-1">&copy; 2021 Електронний каталог</p>
 </footer>
 <script>
     function beautify() {
@@ -53,6 +53,7 @@
         document.getElementById("div_id_yto").classList.add('col-md-3');
         document.getElementById("div_id_yto").setAttribute('style', 'display: inline-block;');
     }
+
 </script>
 </body>
 </html>

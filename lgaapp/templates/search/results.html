@@ -11,13 +11,13 @@
 <body onload="pagination_url()">
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/">Електронний каталог</a>
+        <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}">Електронний каталог</a>
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
             <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="{% url 'add-book' %}">Додати</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="/search">Пошук</a>
+                <a class="nav-link js-scroll-trigger" href="{% url 'search-book' %}">Пошук</a>
             </li>
         </ul>
     </div>
@@ -31,13 +31,13 @@
             <ul>
                 {% for book in books %}
                     {% if book.year and book.author %}
-                        <li>{{ book.name }}. {{ book.author }}. {{ book.year }} р. <a href="/about/{{ book.pk }}">Детальніше</a></li>
+                        <li>{{ book.name }}. {{ book.author }}. {{ book.year }} р. <a href="{% url 'about-book' book.pk %}">Детальніше</a></li>
                     {% elif book.author %}
-                        <li>{{ book.name }}. {{ book.author }}. <a href="/about/{{ book.pk }}">Детальніше</a></li>
+                        <li>{{ book.name }}. {{ book.author }}. <a href="{% url 'about-book' book.pk %}">Детальніше</a></li>
                     {% elif book.year %}
-                        <li>{{ book.name }}. {{ book.year }} р. <a href="/about/{{ book.pk }}">Детальніше</a></li>
+                        <li>{{ book.name }}. {{ book.year }} р. <a href="{% url 'about-book' book.pk %}">Детальніше</a></li>
                     {% else %}
-                        <li>{{ book.name }}. <a href="/about/{{ book.pk }}">Детальніше</a></li>
+                        <li>{{ book.name }}. <a href="{% url 'about-book' book.pk %}">Детальніше</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>

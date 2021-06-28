@@ -1,177 +1,166 @@
 {% load static %}
+
 <!doctype html>
 <html lang="uk">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% for book in books %}
-        <title>Деталі книги {{ book.name }}</title>
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        </head>
-        <body onload='beautify()'>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-            <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="/">Електронний каталог</a>
-                <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="{% url 'add-book' %}">Додати</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="/search">Пошук</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <header>
-            <div class="container h-100">
-                <div class="row justify-content-md-center">
-                    <div class="col-md-8 order-md-4">
-                        <h4 class="mb-3">Деталі книги {{ book.name }}</h4>
-                        <div id="name">
-                            <div class="value">Назва:</div>
-                            <div class="key">{{ book.name }}</div>
-                        </div>
-                        <div id="author">
-                            <div class="value">Автор:</div>
-                            <div class="key">{{ book.author }}</div>
-                        </div>
-                        <div id="publication">
-                            <div class="value">Місце видання:</div>
-                            <div class="key">{{ book.publication }}</div>
-                        </div>
-                        <div id="additional">
-                            <div class="value">Додаткові дані:</div>
-                            <div class="key">{{ book.additional }}</div>
-                        </div>
-                        <div id="description">
-                            <div class="value">Опис:</div>
-                            <div class="key">{{ book.description }}</div>
-                        </div>
-                        <div id="series">
-                            <div class="value">Серія:</div>
-                            <div class="key">{{ book.series }}</div>
-                        </div>
-                        <div id="personality">
-                            <div class="value">Персоналія:</div>
-                            <div class="key">{{ book.personality }}</div>
-                        </div>
-                        <div id="isbn">
-                            <div class="value">ISBN:</div>
-                            <div class="key">{{ book.isbn }}</div>
-                        </div>
-                        <div id="inventory_number">
-                            <div class="value">Інвентарний номер:</div>
-                            <div class="key">{{ book.inventory_number }}</div>
-                        </div>
-                        <div id="cipher">
-                            <div class="value">Шифр книги:</div>
-                            <div class="key">{{ book.cipher }}</div>
-                        </div>
-                        <div id="year">
-                            <div class="value">Рік:</div>
-                            <div class="key">{{ book.year }}</div>
-                        </div>
-                        <div id="place">
-                            <div class="value">Місцезнаходження:</div>
-                            <div class="key">{{ book.place }}</div>
-                        </div>
-                        <div id="language">
-                            <div class="value">Мова:</div>
-                            <div class="key">{{ book.language }}</div>
-                        </div>
-                        <div id="subject">
-                            <div class="value">Тематика:</div>
-                            <div class="key">{{ book.subject }}</div>
-                        </div>
-                        <div id="art">
-                            <div class="value">Мистецтво:</div>
-                            <div class="key">{{ book.art }}</div>
-                        </div>
-                        <div id="country">
-                            <div class="value">Країна:</div>
-                            <div class="key">{{ book.country }}</div>
-                        </div>
-                        <div id="group">
-                            <div class="value">Групи:</div>
-                            <div class="key">{{ book.group }}</div>
-                        </div>
-                        <br><br>
-                        <a href="/about/{{ book.pk }}/edit" class="btn btn-primary">Редагувати</a>
-                        <button onclick="confirmDelete()" class="btn btn-secondary">Видалити</button>
+    <title>Деталі книги {{ book.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/scripts.js' %}"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}">Електронний каталог</a>
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'add-book' %}">Додати</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="{% url 'search-book' %}">Пошук</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<header>
+    <div class="container h-100">
+        <div class="row justify-content-md-center">
+            <div class="col-md-8 order-md-4">
+                <h4 class="mb-3">Деталі книги {{ book.name }}</h4>
+
+                {% if book.name %}
+                    <div id="name">
+                        <div class="value">Назва:</div>
+                        <div class="key">{{ book.name }}</div>
                     </div>
-                </div>
+                {% endif %}
+
+                {% if book.author %}
+                    <div id="author">
+                        <div class="value">Автор:</div>
+                        <div class="key">{{ book.author }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.publication %}
+                    <div id="publication">
+                        <div class="value">Місце видання:</div>
+                        <div class="key">{{ book.publication }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.additional %}
+                    <div id="additional">
+                        <div class="value">Додаткові дані:</div>
+                        <div class="key">{{ book.additional }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.description %}
+                    <div id="description">
+                        <div class="value">Опис:</div>
+                        <div class="key">{{ book.description }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.series %}
+                    <div id="series">
+                        <div class="value">Серія:</div>
+                        <div class="key">{{ book.series }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.personality %}
+                    <div id="personality">
+                        <div class="value">Персоналія:</div>
+                        <div class="key">{{ book.personality }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.isbn %}
+                    <div id="isbn">
+                        <div class="value">ISBN:</div>
+                        <div class="key">{{ book.isbn }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.inventory_number %}
+                    <div id="inventory_number">
+                        <div class="value">Інвентарний номер:</div>
+                        <div class="key">{{ book.inventory_number }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.cipher %}
+                    <div id="cipher">
+                        <div class="value">Шифр книги:</div>
+                        <div class="key">{{ book.cipher }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.year %}
+                    <div id="year">
+                        <div class="value">Рік:</div>
+                        <div class="key">{{ book.year }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.place %}
+                    <div id="place">
+                        <div class="value">Місцезнаходження:</div>
+                        <div class="key">{{ book.place }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.language %}
+                    <div id="language">
+                        <div class="value">Мова:</div>
+                        <div class="key">{{ book.language }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.subject %}
+                    <div id="subject">
+                        <div class="value">Тематика:</div>
+                        <div class="key">{{ book.subject }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.art %}
+                    <div id="art">
+                        <div class="value">Мистецтво:</div>
+                        <div class="key">{{ book.art }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.country %}
+                    <div id="country">
+                        <div class="value">Країна:</div>
+                        <div class="key">{{ book.country }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.group %}
+                    <div id="group">
+                        <div class="value">Групи:</div>
+                        <div class="key">{{ book.group }}</div>
+                    </div>
+                {% endif %}
+
+
+                <br><br>
+                <a href="{% url 'edit-book' book.pk %}" class="btn btn-primary">Редагувати</a>
+                <button onclick="confirmDelete('{{ book.name }}', '{{ book.pk }}')" class="btn btn-secondary">
+                    Видалити
+                </button>
             </div>
-        </header>
-        <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">&copy; 2020 Електронний каталог</p>
-        </footer>
-        <script>
-            function confirmDelete() {
-                let del = confirm("Ви видаляєте книгу з бібліотеки.\n\nВсе правильно?");
-                if (del === true) {
-                    let xmlHttp = new XMLHttpRequest();
-                    xmlHttp.open("GET", "/about/{{ book.pk }}/delete", true);
-                    xmlHttp.send(null);
-
-                    window.location = document.referrer;
-                }
-            }
-
-            function beautify() {
-                if (document.getElementById("name").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("name").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("author").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("author").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("publication").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("publication").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("description").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("description").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("series").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("series").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("personality").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("personality").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("additional").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("additional").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("isbn").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("isbn").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("inventory_number").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("inventory_number").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("cipher").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("cipher").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("year").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("year").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("place").getElementsByClassName("key")[0].innerText === 'None') {
-                    document.getElementById("place").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("language").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("language").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("group").getElementsByClassName("key")[0].innerText === 'None') {
-                    document.getElementById("group").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("subject").getElementsByClassName("key")[0].innerText === 'None') {
-                    document.getElementById("subject").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("art").getElementsByClassName("key")[0].innerText === 'None') {
-                    document.getElementById("art").setAttribute("style", "display: none;");
-                }
-                if (document.getElementById("country").getElementsByClassName("key")[0].innerText === '') {
-                    document.getElementById("country").setAttribute("style", "display: none;");
-                }
-            }
-        </script>
-    {% endfor %}
-    </body>
+        </div>
+    </div>
+</header>
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2021 Електронний каталог</p>
+</footer>
+</body>
 </html>
 

@@ -1,0 +1,15 @@
+version: "3.7"
+
+volumes:
+  database-data:
+
+services:
+  digital-catalogue:
+    build: .
+    container_name: digital-catalogue
+    restart: unless-stopped
+    command: ./docker-entrypoint.sh
+    ports:
+      - "7279:7279"
+    volumes:
+      - database-data:/app/db

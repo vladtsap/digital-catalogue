@@ -3,7 +3,6 @@ from django.db import models
 
 class Subject(models.Model):
 	name = models.CharField(max_length=200, db_index=True, unique=True)
-	slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
 	class Meta:
 		ordering = ['name']
@@ -16,7 +15,6 @@ class Subject(models.Model):
 
 class Art(models.Model):
 	name = models.CharField(max_length=200, db_index=True, unique=True)
-	slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
 	class Meta:
 		ordering = ['name']
@@ -29,7 +27,6 @@ class Art(models.Model):
 
 class Group(models.Model):
 	name = models.CharField(max_length=200, db_index=True, unique=True)
-	slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
 	class Meta:
 		ordering = ['name']
@@ -42,7 +39,6 @@ class Group(models.Model):
 
 class Place(models.Model):
 	name = models.CharField(max_length=200, db_index=True, unique=True)
-	slug = models.SlugField(max_length=200, db_index=True, unique=True)
 
 	class Meta:
 		ordering = ['name']
@@ -54,24 +50,23 @@ class Place(models.Model):
 
 
 class Book(models.Model):
-	name = models.CharField(max_length=2000, db_index=True, verbose_name="Назва", default=None, blank=True)
-	author = models.CharField(max_length=2000, verbose_name="Автор", default=None, blank=True)
-	publication = models.CharField(max_length=200, db_index=True, verbose_name="Місце видання", default=None, blank=True)
+	name = models.CharField(max_length=2000, db_index=True, verbose_name="Назва")
+	author = models.CharField(max_length=2000, verbose_name="Автор", blank=True)
+	publication = models.CharField(max_length=200, verbose_name="Місце видання", blank=True)
 	description = models.TextField(verbose_name="Опис", blank=True)
-	series = models.CharField(max_length=200, db_index=True, verbose_name="Серія", blank=True)
-	personality = models.CharField(max_length=200, db_index=True, verbose_name="Персоналії", default=None, blank=True)
-	additional = models.CharField(max_length=200, db_index=True, verbose_name="Додатково", default=None, blank=True)
+	series = models.CharField(max_length=200, verbose_name="Серія", blank=True)
+	personality = models.CharField(max_length=200, verbose_name="Персоналії", blank=True)
+	additional = models.CharField(max_length=200, verbose_name="Додатково", blank=True)
 	isbn = models.CharField(max_length=20, verbose_name="ISBN", default=None, blank=True)
-	inventory_number = models.CharField(max_length=200, verbose_name="Інвентарний номер", default=None, blank=True)
-	cipher = models.CharField(max_length=200, verbose_name="Шифр книги", default=None, blank=True)
-	year = models.CharField(max_length=200, verbose_name="Рік видання", default=None, blank=True)
+	inventory_number = models.CharField(max_length=200, verbose_name="Інвентарний номер", blank=True)
+	cipher = models.CharField(max_length=200, verbose_name="Шифр книги", blank=True)
+	year = models.CharField(max_length=200, verbose_name="Рік видання", blank=True)
+	language = models.CharField(max_length=200, verbose_name="Мова", blank=True)
+	country = models.CharField(max_length=200, verbose_name="Країна", blank=True)
 	place = models.ForeignKey(Place, max_length=200, verbose_name="Місцезнаходження", default=None,on_delete=models.CASCADE, null=True, blank=True)
-	language = models.CharField(max_length=200, db_index=True, verbose_name="Мова",default=None, blank=True)
-	country = models.CharField(max_length=200, db_index=True, verbose_name="Країна", default=None, blank=True)
 	subject = models.ForeignKey(Subject, max_length=200, verbose_name="Тематика", default=None, on_delete=models.CASCADE, null=True, blank=True)
 	art = models.ForeignKey(Art, max_length=200, verbose_name="Мистецтво", default=None, on_delete=models.CASCADE, null=True, blank=True)
 	group = models.ForeignKey(Group, max_length=200, verbose_name="Групи", default=None, on_delete=models.CASCADE, null=True, blank=True)
-	slug = models.SlugField(max_length=2000, db_index=True, blank=True)
 
 	class Meta:
 		ordering = ['name']
