@@ -24,7 +24,6 @@ SECRET_KEY = 'SECRET_KEY'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'TRUE') == 'TRUE'
 
-
 ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0"]
 
 # Application definition
@@ -76,7 +75,7 @@ WSGI_APPLICATION = 'LGA.wsgi.application'
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3',
-		'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+		'NAME': os.path.join(BASE_DIR, 'db/db.sqlite3'),
 	}
 }
 
