@@ -31,9 +31,9 @@
             <ul>
                 {% for book in books %}
                     {% if book.year and book.author %}
-                        <li>{{ book.name }}. {{ book.author }}. {{ book.year }} р. <a href="{% url 'about-book' book.pk %}">Детальніше</a></li>
+                        <li>{{ book.author }}. {{ book.name }}. {{ book.year }} р. <a href="{% url 'about-book' book.pk %}">Детальніше</a></li>
                     {% elif book.author %}
-                        <li>{{ book.name }}. {{ book.author }}. <a href="{% url 'about-book' book.pk %}">Детальніше</a></li>
+                        <li>{{ book.author }}. {{ book.name }}. <a href="{% url 'about-book' book.pk %}">Детальніше</a></li>
                     {% elif book.year %}
                         <li>{{ book.name }}. {{ book.year }} р. <a href="{% url 'about-book' book.pk %}">Детальніше</a></li>
                     {% else %}
