@@ -32,8 +32,8 @@ class AddBook(forms.ModelForm):
 	helper.label_class = 'col-md-6'
 	helper.field_class = 'col-md-6'
 	helper.layout = Layout(
-		Field('name', autocomplete='off', required=True),
 		Field('author', autocomplete='off'),
+		Field('name', autocomplete='off', required=True),
 		Field('publication', autocomplete='off'),
 		Field('additional', autocomplete='off'),
 		Field('description', autocomplete='off'),
@@ -82,8 +82,8 @@ class SearchBook(forms.ModelForm):
 	helper.form_method = 'GET'
 	helper.form_action = '/search/result/'
 	helper.layout = Layout(
-		Field('n', autocomplete='off'),
 		Field('a', autocomplete='off'),
+		Field('n', autocomplete='off'),
 		Field('publ', autocomplete='off'),
 		Field('add', autocomplete='off'),
 		Field('ser', autocomplete='off'),

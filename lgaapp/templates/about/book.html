@@ -29,17 +29,17 @@
             <div class="col-md-8 order-md-4">
                 <h4 class="mb-3">Деталі книги {{ book.name }}</h4>
 
-                {% if book.name %}
-                    <div id="name">
-                        <div class="value">Назва:</div>
-                        <div class="key">{{ book.name }}</div>
-                    </div>
-                {% endif %}
-
                 {% if book.author %}
                     <div id="author">
                         <div class="value">Автор:</div>
                         <div class="key">{{ book.author }}</div>
+                    </div>
+                {% endif %}
+
+                {% if book.name %}
+                    <div id="name">
+                        <div class="value">Назва:</div>
+                        <div class="key">{{ book.name }}</div>
                     </div>
                 {% endif %}
 
