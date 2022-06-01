@@ -1,3 +1,4 @@
+import os
 import re
 
 from django.core.paginator import Paginator
@@ -5,6 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 
+from LGA.settings import DATABASES
 from lgaapp.forms import SearchBook, AddBook
 from lgaapp.models import Book
 
@@ -194,7 +196,7 @@ def search_result(request):
 		books = filtering_search(q)
 
 		books_count = books.__len__()
-		paginator = Paginator(books, 10)
+		paginator = Paginator(books, 15)
 
 		first_page = False
 		prev_page = False
@@ -228,3 +230,16 @@ def search_result(request):
 def bad_search(request):
 	message = 'You searched for: %r' % request.GET['q']
 	return HttpResponse(message)
+
+
+@require_http_methods(['GET'])
+def download_database(request):
+	db_path = DATABASES['default']['NAME']
+
+	with open(db_path, 'rb') as fh:
+		response = HttpResponse(
+            fh.read(),
+            content_type='application/x-sqlite3',
+        )
+		response['Content-Disposition'] = 'inline; filename=' + os.path.basename(db_path)
+	return response
