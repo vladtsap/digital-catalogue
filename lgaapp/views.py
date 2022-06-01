@@ -194,7 +194,7 @@ def search_result(request):
 		books = filtering_search(q)
 
 		books_count = books.__len__()
-		paginator = Paginator(books, 10)
+		paginator = Paginator(books, 15)
 
 		first_page = False
 		prev_page = False
