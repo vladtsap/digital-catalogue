@@ -9,4 +9,5 @@ urlpatterns = [
 	path('add/', views.book_add, name='add-book'),
 	path('search/', views.search_box, name='search-book'),
 	path('search/result/', views.search_result, name='search-result'),
+	path('backup/db', views.download_database, name='download backup of database'),
 ]
