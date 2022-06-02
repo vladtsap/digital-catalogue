@@ -5,8 +5,8 @@ Digital catalogue for Lviv Art Gallery
 ### TODOs
 
 - [ ] update README
-- [ ] remove empty params from query
-- [ ] review (and rework?) book search
+- [x] remove empty params from query
+- [x] review (and rework?) book search
 - [ ] cover code with unit tests
 - [ ] edit book with PUT request method 
 (update in DB, without creating-deleting an object and as a result — changing id)
