@@ -103,8 +103,7 @@ def filter_books(query: dict) -> set[Book]:
 
 	books = list(Book.objects.filter(**filter_query).all())
 
-
-	if query['n']:
+	if query.get('n'):
 		temp = []
 		for book in books:
 			for elem in query['n'].split(' '):
@@ -112,7 +111,7 @@ def filter_books(query: dict) -> set[Book]:
 					temp.append(book)
 		books = temp
 
-	if query['a']:
+	if query.get('a'):
 		temp = []
 		for book in books:
 			for elem in query['a'].split(' '):
@@ -120,7 +119,7 @@ def filter_books(query: dict) -> set[Book]:
 					temp.append(book)
 		books = temp
 
-	if query['lang']:
+	if query.get('lang'):
 		temp = []
 		for book in books:
 			for elem in re.split(r'\W+', query['lang']):
@@ -128,7 +127,7 @@ def filter_books(query: dict) -> set[Book]:
 					temp.append(book)
 		books = temp
 
-	if query['cntr']:
+	if query.get('cntr'):
 		temp = []
 		for book in books:
 			for elem in re.split(r'\W+', query['cntr']):
@@ -136,7 +135,7 @@ def filter_books(query: dict) -> set[Book]:
 					temp.append(book)
 		books = temp
 
-	if query['pers']:
+	if query.get('pers'):
 		temp = []
 		for book in books:
 			for elem in query['pers'].split(' '):
@@ -144,7 +143,7 @@ def filter_books(query: dict) -> set[Book]:
 					temp.append(book)
 		books = temp
 
-	if query['ser']:
+	if query.get('ser'):
 		temp = []
 		for book in books:
 			for elem in query['ser'].split(' '):
@@ -152,21 +151,21 @@ def filter_books(query: dict) -> set[Book]:
 					temp.append(book)
 		books = temp
 
-	if query['invnum']:
+	if query.get('invnum'):
 		temp = []
 		for book in books:
 			if query['invnum'].lower() in book.inventory_number.lower():
 				temp.append(book)
 		books = temp
 
-	if query['add']:
+	if query.get('add'):
 		temp = []
 		for book in books:
 			if query['add'].lower() in book.additional.lower():
 				temp.append(book)
 		books = temp
 
-	if query['publ']:
+	if query.get('publ'):
 		temp = []
 		for book in books:
 			if query['publ'].lower() in book.publication.lower():
