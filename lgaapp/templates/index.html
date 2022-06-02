@@ -34,7 +34,7 @@
             <div class="col-lg-8 align-self-baseline">
                 <p></p>
                 <p class="text-white-75 font-weight-light mb-5">Тут Ви зможете знайти будь-яку книгу або додати нову ;)
-                    <br>Зараз в каталозі є <a style="color: rgba(255, 255, 255, 0.75);" href="/search/result/?n=&a=&publ=&add=&ser=&pers=&invnum=&yfr=&yto=&plc=&lang=&subj=&art=&cntr=&gr=&search=Пошук">{{ bookLength }} книг</a></p>
+                    <br>Зараз в каталозі є <a style="color: rgba(255, 255, 255, 0.75);" href="{% url 'search-result' %}">{{ bookLength }} книг</a></p>
                 <p></p>
                 <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'add-book' %}">Додати книгу</a>
                 <a class="btn btn-primary btn-xl js-scroll-trigger" href="{% url 'search-book' %}">Знайти книгу</a>
