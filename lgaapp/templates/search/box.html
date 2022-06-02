@@ -1,4 +1,4 @@
-{% load static %}{% load crispy_forms_tags %}
+{% load static %}
 <!doctype html>
 
 <html lang="uk">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body onload='beautify()'>
+<body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}">Електронний каталог</a>
@@ -29,7 +29,130 @@
         <div class="row justify-content-md-center">
             <div class="col-md-8 order-md-4">
                 <h4 class="mb-3">Знайти книгу</h4>
-                {% crispy form %}
+                <form action="/search/result" method="GET" id="search-form">
+                    <div class="form-group col-md-6">
+                        <label>Автор</label>
+                        <input type="text" name="author" maxlength="200" autocomplete="off" class="textinput textInput form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Назва</label>
+                        <input type="text" name="name" maxlength="200" autocomplete="off" class="textinput textInput form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Місце видання</label>
+                        <input type="text" name="publication" maxlength="200" autocomplete="off" class="textinput textInput form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Додатково</label>
+                        <input type="text" name="additional" maxlength="200" autocomplete="off" class="textinput textInput form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Серія</label>
+                        <input type="text" name="series" maxlength="200" autocomplete="off" class="textinput textInput form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Персоналії</label>
+                        <input type="text" name="personality" maxlength="200" autocomplete="off" class="textinput textInput form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Інвентарний номер</label>
+                        <input type="text" name="inventory-number" maxlength="200" autocomplete="off" class="textinput textInput form-control">ʼ
+                    </div>
+                    <div class="form-group col-md-3" style="display: inline-block;">
+                        <label>З року</label>
+                        <input type="text" name="year-from" maxlength="200" autocomplete="off" class="textinput textInput form-control">
+                    </div>
+                    <div class="form-group col-md-3" style="display: inline-block;">
+                        <label>До року</label>
+                        <input type="text" name="year-to" maxlength="200" autocomplete="off" class="textinput textInput form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Місцезнаходження</label>
+                        <select name="place" class="custom-select d-block w-100 form-control custom-select">
+                            <option value="" selected="">---------</option>
+                            <option value="4">Золочів</option>
+                            <option value="2">Музей книги</option>
+                            <option value="3">Олеськ</option>
+                            <option value="1">Палац Потоцьких</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Мова</label>
+                        <input type="text" name="language" maxlength="200" autocomplete="off" class="textinput textInput form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Тематика</label>
+                        <select name="subject" class="custom-select d-block w-100 form-control custom-select">
+                            <option value="" selected="">---------</option>
+                            <option value="12">Історія</option>
+                            <option value="13">Історія Львова</option>
+                            <option value="17">Архівознавство</option>
+                            <option value="5">Бібліографія</option>
+                            <option value="6">Бібліотечна Справа</option>
+                            <option value="10">Етика</option>
+                            <option value="14">Етнологія. Етнографія. Фольклор</option>
+                            <option value="20">Засоби масової інформації</option>
+                            <option value="3">Книгознавство</option>
+                            <option value="4">Культорологія</option>
+                            <option value="15">Літературознавство</option>
+                            <option value="7">Музеєзнавство</option>
+                            <option value="1">Наука і Культура</option>
+                            <option value="21">Нумізматика</option>
+                            <option value="9">Психологія</option>
+                            <option value="11">Релігія</option>
+                            <option value="19">Соціологія</option>
+                            <option value="16">Туризм</option>
+                            <option value="18">Філателія</option>
+                            <option value="8">Філософія</option>
+                            <option value="2">Художня Література</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Мистецтво</label>
+                        <select name="art" class="custom-select d-block w-100 form-control custom-select">
+                            <option value="" selected="">---------</option>
+                            <option value="7">Історія мистецтва</option>
+                            <option value="18">Антикваріат</option>
+                            <option value="4">Архітектура</option>
+                            <option value="2">Графіка</option>
+                            <option value="5">Декоративно-прикладне мистецтво</option>
+                            <option value="15">Дизайн</option>
+                            <option value="1">Живопис</option>
+                            <option value="13">Кіно</option>
+                            <option value="11">Музика</option>
+                            <option value="9">Мініатюра</option>
+                            <option value="14">Образотворче мистецтво</option>
+                            <option value="17">Охорона пам’яток мистецтва. Художні музеї. Колекції</option>
+                            <option value="16">Реставрація</option>
+                            <option value="8">Сакральне мистецтво</option>
+                            <option value="3">Скульптура</option>
+                            <option value="12">Театр</option>
+                            <option value="10">Теорія мистецтва</option>
+                            <option value="6">Фотомистецтво</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Країна</label>
+                        <input type="text" name="country" maxlength="200" autocomplete="off" class="textinput textInput form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Групи</label>
+                        <select name="gr" class="custom-select d-block w-100 form-control custom-select">
+                            <option value="" selected="">---------</option>
+                            <option value="4">Каталоги</option>
+                            <option value="6">Каталоги-дублети</option>
+                            <option value="1">Книги Вітчизняні</option>
+                            <option value="2">Книги іноземні</option>
+                            <option value="3">Періодика</option>
+                            <option value="5">Фонд Возницького</option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-sm-1 col-sm-4">
+                            <input type="submit" class="btn btn-primary btn btn-primary btn-lg btn-block">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -39,20 +162,19 @@
     <p class="mb-1">&copy; 2022 Електронний каталог</p>
 </footer>
 <script>
-    function beautify() {
-        let elements = document.getElementsByClassName('form-group');
-        for (let i = 0; i < elements.length - 1; i++) {
-            elements[i].className += ' col-md-6';
+
+    let myForm = document.getElementById('search-form');
+    myForm.addEventListener('submit', function () {
+        let allInputs = myForm.querySelectorAll('input,select');
+
+        for (let i = 0; i < allInputs.length; i++) {
+            let input = allInputs[i];
+            if (input.name && !input.value) {
+                input.name = '';
+            }
         }
 
-        document.getElementById("div_id_yfr").classList.remove('col-md-6');
-        document.getElementById("div_id_yfr").classList.add('col-md-3');
-        document.getElementById("div_id_yfr").setAttribute('style', 'display: inline-block;');
-
-        document.getElementById("div_id_yto").classList.remove('col-md-6');
-        document.getElementById("div_id_yto").classList.add('col-md-3');
-        document.getElementById("div_id_yto").setAttribute('style', 'display: inline-block;');
-    }
+    });
 
 </script>
 </body>

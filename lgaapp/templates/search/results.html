@@ -24,10 +24,9 @@
 </nav>
 <header>
     <div class="container h-100">
-        <!--<p>You searched for: <strong>{{ query }}</strong></p>-->
 
         {% if books %}
-            <p>Знайдено книг: {{ books_count }}</p>
+            <p>Знайдено книг: {{ books.paginator.count }}</p>
             <ul>
                 {% for book in books %}
                     {% if book.year and book.author %}
@@ -48,7 +47,7 @@
             <div id="pages"> Сторінка {{ books.number }} з {{ books.paginator.num_pages }}</div>
             <ul class="pagination">
 
-                {% if prev_page %}
+                {% if books.has_previous %}
                     <li class="page-item"><a class="page-link" id="prev" href="#">Попередня</a></li>
                 {% else %}
                     <li class="page-item disabled"><a class="page-link" href="#">Попередня</a></li>
@@ -56,7 +55,7 @@
 
                 <li class="page-item"><a class="page-link"> {{ books.number }} </a></li>
 
-                {% if next_page %}
+                {% if books.has_next %}
                     <li class="page-item"><a class="page-link" id="next" href="#">Наступна</a></li>
                 {% else %}
                     <li class="page-item disabled"><a class="page-link" href="#">Наступна</a></li>
@@ -74,34 +73,22 @@
         query_string = url.search;
         search_params = new URLSearchParams(query_string);
 
-        {% if firstPage %}
-            next_num = 2;
-            search_params.append('page', next_num.toString());
+        {% if books.has_previous %}
+            prev_num = parseInt({{ books.number }}) - 1;
+            search_params.set('page', prev_num.toString());
+            url.search = search_params.toString();
+            prev_url = url.toString();
+            prev = document.getElementById('prev');
+            prev.setAttribute('href', prev_url);
+        {% endif %}
+
+        {% if books.has_next %}
+            next_num = parseInt({{ books.number }}) + 1;
+            search_params.set('page', next_num.toString());
             url.search = search_params.toString();
             next_url = url.toString();
             next = document.getElementById('next');
             next.setAttribute('href', next_url);
-
-        {% else %}
-            prev_num = parseInt(search_params.get('page')) - 1;
-            next_num = parseInt(search_params.get('page')) + 1;
-
-            {% if prev_page %}
-                search_params.set('page', prev_num.toString());
-                url.search = search_params.toString();
-                prev_url = url.toString();
-                prev = document.getElementById('prev');
-                prev.setAttribute('href', prev_url);
-            {% endif %}
-
-            {% if next_page %}
-                search_params.set('page', next_num.toString());
-                url.search = search_params.toString();
-                next_url = url.toString();
-                next = document.getElementById('next');
-                next.setAttribute('href', next_url);
-            {% endif %}
-
         {% endif %}
     }
 </script>

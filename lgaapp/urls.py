@@ -1,6 +1,6 @@
 from django.urls import path
 
-from . import views
+from lgaapp import views
 
 urlpatterns = [
 	path('', views.index, name='index'),
