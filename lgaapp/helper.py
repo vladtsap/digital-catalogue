@@ -6,22 +6,22 @@ from lgaapp.models import Book
 def filter_books(query: dict) -> list[Book]:
 	filter_query = {}
 
-	if year_from := query.get('yfr'):
+	if year_from := query.get('year-from'):
 		filter_query['year__gte'] = int(year_from)
 
-	if year_to := query.get('yto'):
+	if year_to := query.get('year-to'):
 		filter_query['year__lte'] = int(year_to)
 
-	if subject := query.get('subj'):
+	if subject := query.get('subject'):
 		filter_query['subject'] = subject
 
 	if art := query.get('art'):
 		filter_query['art'] = art
 
-	if group := query.get('gr'):
+	if group := query.get('group'):
 		filter_query['group'] = group
 
-	if place := query.get('plc'):
+	if place := query.get('place'):
 		filter_query['place'] = place
 
 	books = set(Book.objects.filter(**filter_query).all())
@@ -31,12 +31,12 @@ def filter_books(query: dict) -> list[Book]:
 
 		# case-insensitive separated filter
 		for key, book_property in {
-			'n': book.name,
-			'a': book.author,
-			'lang': book.language,
-			'cntr': book.country,
-			'pers': book.personality,
-			'ser': book.series,
+			'name': book.name,
+			'author': book.author,
+			'language': book.language,
+			'country': book.country,
+			'personality': book.personality,
+			'series': book.series,
 		}.items():
 			if value := query.get(key):
 				is_searched = False
@@ -49,9 +49,9 @@ def filter_books(query: dict) -> list[Book]:
 
 		# case-sensitive joined filter
 		for key, book_property in {
-			'invnum': book.inventory_number,
-			'add': book.additional,
-			'publ': book.publication,
+			'inventory-number': book.inventory_number,
+			'additional': book.additional,
+			'publication': book.publication,
 		}.items():
 			if value := query.get(key):
 				if value.lower() not in book_property.lower():

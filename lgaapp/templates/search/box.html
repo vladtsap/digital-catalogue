@@ -30,54 +30,45 @@
             <div class="col-md-8 order-md-4">
                 <h4 class="mb-3">Знайти книгу</h4>
                 <form action="/search/result" method="GET" id="search-form">
-                    <div id="div_id_a" class="form-group col-md-6">
-                        <label for="id_a" class="">Автор</label>
-                        <input type="text" name="a" maxlength="200" autocomplete="off" class="textinput textInput form-control" id="id_a">
+                    <div class="form-group col-md-6">
+                        <label>Автор</label>
+                        <input type="text" name="author" maxlength="200" autocomplete="off" class="textinput textInput form-control">
                     </div>
-                    <div id="div_id_n" class="form-group col-md-6">
-                        <label for="id_n" class="">Назва</label>
-                        <input type="text" name="n" maxlength="200" autocomplete="off"
-                            class="textinput textInput form-control" id="id_n">
+                    <div class="form-group col-md-6">
+                        <label>Назва</label>
+                        <input type="text" name="name" maxlength="200" autocomplete="off" class="textinput textInput form-control">
                     </div>
-                    <div id="div_id_publ" class="form-group col-md-6">
-                        <label for="id_publ" class="">Місце видання</label>
-                        <input type="text" name="publ" maxlength="200" autocomplete="off"
-                            class="textinput textInput form-control" id="id_publ">
+                    <div class="form-group col-md-6">
+                        <label>Місце видання</label>
+                        <input type="text" name="publication" maxlength="200" autocomplete="off" class="textinput textInput form-control">
                     </div>
-                    <div id="div_id_add" class="form-group col-md-6">
-                        <label for="id_add" class="">Додатково</label>
-                        <input type="text" name="add" maxlength="200" autocomplete="off"
-                            class="textinput textInput form-control" id="id_add">
+                    <div class="form-group col-md-6">
+                        <label>Додатково</label>
+                        <input type="text" name="additional" maxlength="200" autocomplete="off" class="textinput textInput form-control">
                     </div>
-                    <div id="div_id_ser" class="form-group col-md-6">
-                        <label for="id_ser" class="">Серія</label>
-                        <input type="text" name="ser" maxlength="200" autocomplete="off"
-                            class="textinput textInput form-control" id="id_ser">
+                    <div class="form-group col-md-6">
+                        <label>Серія</label>
+                        <input type="text" name="series" maxlength="200" autocomplete="off" class="textinput textInput form-control">
                     </div>
-                    <div id="div_id_pers" class="form-group col-md-6">
-                        <label for="id_pers" class="">Персоналії</label>
-                        <input type="text" name="pers" maxlength="200" autocomplete="off"
-                            class="textinput textInput form-control" id="id_pers">
+                    <div class="form-group col-md-6">
+                        <label>Персоналії</label>
+                        <input type="text" name="personality" maxlength="200" autocomplete="off" class="textinput textInput form-control">
                     </div>
-                    <div id="div_id_invnum" class="form-group col-md-6">
-                        <label for="id_invnum" class="">Інвентарний номер</label>
-                        <input type="text" name="invnum" maxlength="200" autocomplete="off"
-                            class="textinput textInput form-control" id="id_invnum">ʼ
+                    <div class="form-group col-md-6">
+                        <label>Інвентарний номер</label>
+                        <input type="text" name="inventory-number" maxlength="200" autocomplete="off" class="textinput textInput form-control">ʼ
                     </div>
-                    <div id="div_id_yfr" class="form-group col-md-3" style="display: inline-block;">
-                        <label for="id_yfr" class="">З року</label>
-                        <input type="text" name="yfr" maxlength="200" autocomplete="off"
-                            class="textinput textInput form-control" id="id_yfr">
+                    <div class="form-group col-md-3" style="display: inline-block;">
+                        <label>З року</label>
+                        <input type="text" name="year-from" maxlength="200" autocomplete="off" class="textinput textInput form-control">
                     </div>
-                    <div id="div_id_yto" class="form-group col-md-3" style="display: inline-block;">
-                        <label for="id_yto" class="">До року</label>
-                        <input type="text" name="yto" maxlength="200" autocomplete="off"
-                            class="textinput textInput form-control" id="id_yto">
+                    <div class="form-group col-md-3" style="display: inline-block;">
+                        <label>До року</label>
+                        <input type="text" name="year-to" maxlength="200" autocomplete="off" class="textinput textInput form-control">
                     </div>
-                    <div id="div_id_plc" class="form-group col-md-6">
-                        <label for="id_plc" class="">Місцезнаходження</label>
-                        <select name="plc" class="custom-select d-block w-100 form-control custom-select"
-                            id="id_plc">
+                    <div class="form-group col-md-6">
+                        <label>Місцезнаходження</label>
+                        <select name="place" class="custom-select d-block w-100 form-control custom-select">
                             <option value="" selected="">---------</option>
                             <option value="4">Золочів</option>
                             <option value="2">Музей книги</option>
@@ -85,15 +76,13 @@
                             <option value="1">Палац Потоцьких</option>
                         </select>
                     </div>
-                    <div id="div_id_lang" class="form-group col-md-6">
-                        <label for="id_lang" class="">Мова</label>
-                        <input type="text" name="lang" maxlength="200" autocomplete="off"
-                            class="textinput textInput form-control" id="id_lang">
+                    <div class="form-group col-md-6">
+                        <label>Мова</label>
+                        <input type="text" name="language" maxlength="200" autocomplete="off" class="textinput textInput form-control">
                     </div>
-                    <div id="div_id_subj" class="form-group col-md-6">
-                        <label for="id_subj" class="">Тематика</label>
-                        <select name="subj" class="custom-select d-block w-100 form-control custom-select"
-                            id="id_subj">
+                    <div class="form-group col-md-6">
+                        <label>Тематика</label>
+                        <select name="subject" class="custom-select d-block w-100 form-control custom-select">
                             <option value="" selected="">---------</option>
                             <option value="12">Історія</option>
                             <option value="13">Історія Львова</option>
@@ -118,10 +107,9 @@
                             <option value="2">Художня Література</option>
                         </select>
                     </div>
-                    <div id="div_id_art" class="form-group col-md-6">
-                        <label for="id_art" class="">Мистецтво</label>
-                        <select name="art" class="custom-select d-block w-100 form-control custom-select"
-                            id="id_art">
+                    <div class="form-group col-md-6">
+                        <label>Мистецтво</label>
+                        <select name="art" class="custom-select d-block w-100 form-control custom-select">
                             <option value="" selected="">---------</option>
                             <option value="7">Історія мистецтва</option>
                             <option value="18">Антикваріат</option>
@@ -143,15 +131,13 @@
                             <option value="6">Фотомистецтво</option>
                         </select>
                     </div>
-                    <div id="div_id_cntr" class="form-group col-md-6">
-                        <label for="id_cntr" class="">Країна</label>
-                        <input type="text" name="cntr" maxlength="200" autocomplete="off"
-                            class="textinput textInput form-control" id="id_cntr">
+                    <div class="form-group col-md-6">
+                        <label>Країна</label>
+                        <input type="text" name="country" maxlength="200" autocomplete="off" class="textinput textInput form-control">
                     </div>
-                    <div id="div_id_gr" class="form-group col-md-6">
-                        <label for="id_gr" class="">Групи</label>
-                        <select name="gr" class="custom-select d-block w-100 form-control custom-select"
-                            id="id_gr">
+                    <div class="form-group col-md-6">
+                        <label>Групи</label>
+                        <select name="gr" class="custom-select d-block w-100 form-control custom-select">
                             <option value="" selected="">---------</option>
                             <option value="4">Каталоги</option>
                             <option value="6">Каталоги-дублети</option>
@@ -162,9 +148,8 @@
                         </select>
                     </div>
                     <div class="form-group row">
-                        <div class="offset-sm-1 col-sm-4"><input type="submit"
-                            class="btn btn-primary btn btn-primary btn-lg btn-block"
-                            id="submit-id-search">
+                        <div class="offset-sm-1 col-sm-4">
+                            <input type="submit" class="btn btn-primary btn btn-primary btn-lg btn-block">
                         </div>
                     </div>
                 </form>
