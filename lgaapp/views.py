@@ -80,32 +80,29 @@ def search_box(request):
 	return render(request, 'search/box.html', {'form': form})
 
 
+def filter_books(query: dict) -> set[Book]:
+	filter_query = {}
 
+	if year_from := query.get('yfr'):
+		filter_query['year__gte'] = int(year_from)
 
-def filtering_search(query):
-	books = Book.objects.all()
+	if year_to := query.get('yto'):
+		filter_query['year__lte'] = int(year_to)
 
-	try:
-		years = []
-		for i in range(int(query['yfr']), int(query['yto']) + 1):
-			years.append(str(i))
-		books = books.filter(year__in=years)
-	except:
-		pass
+	if subject := query.get('subj'):
+		filter_query['subject'] = subject
 
-	if query['subj']:
-		books = books.filter(subject=query['subj'])
+	if art := query.get('art'):
+		filter_query['art'] = art
 
-	if query['art']:
-		books = books.filter(art=query['art'])
+	if group := query.get('gr'):
+		filter_query['group'] = group
 
-	if query['gr']:
-		books = books.filter(group=query['gr'])
+	if place := query.get('plc'):
+		filter_query['place'] = place
 
-	if query['plc']:
-		books = books.filter(place=query['plc'])
+	books = list(Book.objects.filter(**filter_query).all())
 
-	books = list(books)
 
 	if query['n']:
 		temp = []
