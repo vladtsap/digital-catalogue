@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_http_methods
 
 from LGA.settings import DATABASES
-from lgaapp.forms import SearchBook, AddBook
+from lgaapp.forms import AddBook
 from lgaapp.models import Book
 
 
@@ -76,8 +76,7 @@ def book_add(request):
 
 @require_http_methods(['GET'])
 def search_box(request):
-	form = SearchBook()
-	return render(request, 'search/box.html', {'form': form})
+	return render(request, 'search/box.html')
 
 
 def filter_books(query: dict) -> list[Book]:
