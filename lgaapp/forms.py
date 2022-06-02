@@ -8,24 +8,25 @@ from lgaapp.models import Book
 class AddBook(forms.ModelForm):
 	class Meta:
 		model = Book
-		fields = ('name',
-				  'author',
-				  'publication',
-				  'additional',
-				  'description',
-				  'series',
-				  'personality',
-				  'isbn',
-				  'inventory_number',
-				  'cipher',
-				  'year',
-				  'place',
-				  'language',
-				  'subject',
-				  'art',
-				  'country',
-				  'group',
-				  )
+		fields = (
+			'name',
+			'author',
+			'publication',
+			'additional',
+			'description',
+			'series',
+			'personality',
+			'isbn',
+			'inventory_number',
+			'cipher',
+			'year',
+			'place',
+			'language',
+			'subject',
+			'art',
+			'country',
+			'group',
+		)
 
 	helper = FormHelper()
 	helper.form_method = 'POST'
