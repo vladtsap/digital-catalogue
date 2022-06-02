@@ -80,8 +80,6 @@ def search_box(request):
 	return render(request, 'search/box.html', {'form': form})
 
 
-def cap(x):
-	return x[0], x[1][0]
 
 
 def filtering_search(query):
@@ -189,47 +187,22 @@ def filtering_search(query):
 
 @require_http_methods(['GET'])
 def search_result(request):
-	if request.GET:
-		q = dict(request.GET)
-		q = dict(map(cap, list(zip(list(q.keys()), q.values()))))
-
-		books = filtering_search(q)
-
-		books_count = books.__len__()
-		paginator = Paginator(books, 15)
-
-		first_page = False
-		prev_page = False
-		next_page = False
-
-		try:
-			books = paginator.get_page(q['page'])
-		except KeyError:
-			first_page = True
-			q['page'] = 1
-			books = paginator.get_page(1)
-
-		if int(q['page']) > 1:
-			prev_page = True
-
-		if paginator.num_pages - int(q['page']) > 0:
-			next_page = True
-
-		return render(
-			request,
-			'search/results.html',
-			{
-				'books': books, 'query': q, 'books_count': books_count,
-				'prev_page': prev_page, 'next_page': next_page, 'firstPage': first_page
-			}
-		)
+	if args := request.GET:
+		books = filter_books(args)
 	else:
-		return HttpResponse('Please submit a search term.')
+		books = Book.objects.all()
 
+	paginator = Paginator(books, 15)
+	paginated_books = paginator.get_page(args.get('page'))
 
-def bad_search(request):
-	message = 'You searched for: %r' % request.GET['q']
-	return HttpResponse(message)
+	return render(
+		request,
+		'search/results.html',
+		{
+			'books': paginated_books,
+			'first_page': args.get('page') is None,
+		}
+	)
 
 
 @require_http_methods(['GET'])
@@ -238,8 +211,8 @@ def download_database(request):
 
 	with open(db_path, 'rb') as fh:
 		response = HttpResponse(
-            fh.read(),
-            content_type='application/x-sqlite3',
-        )
+			fh.read(),
+			content_type='application/x-sqlite3',
+		)
 		response['Content-Disposition'] = 'inline; filename=' + os.path.basename(db_path)
 	return response
