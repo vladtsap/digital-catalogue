@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Subject, Art, Group, Book, Place
+from lgaapp.models import Subject, Art, Group, Book, Place
 
 
 class SubjectAdmin(admin.ModelAdmin):

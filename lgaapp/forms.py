@@ -2,7 +2,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field, Div
 from django import forms
 
-from .models import Book, Search
+from lgaapp.models import Book, Search
 
 
 class AddBook(forms.ModelForm):
