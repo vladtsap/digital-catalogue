@@ -73,34 +73,22 @@
         query_string = url.search;
         search_params = new URLSearchParams(query_string);
 
-        {% if first_page %}
-            next_num = 2;
-            search_params.append('page', next_num.toString());
+        {% if books.has_previous %}
+            prev_num = parseInt({{ books.number }}) - 1;
+            search_params.set('page', prev_num.toString());
+            url.search = search_params.toString();
+            prev_url = url.toString();
+            prev = document.getElementById('prev');
+            prev.setAttribute('href', prev_url);
+        {% endif %}
+
+        {% if books.has_next %}
+            next_num = parseInt({{ books.number }}) + 1;
+            search_params.set('page', next_num.toString());
             url.search = search_params.toString();
             next_url = url.toString();
             next = document.getElementById('next');
             next.setAttribute('href', next_url);
-
-        {% else %}
-            prev_num = parseInt(search_params.get('page')) - 1;
-            next_num = parseInt(search_params.get('page')) + 1;
-
-            {% if books.has_previous %}
-                search_params.set('page', prev_num.toString());
-                url.search = search_params.toString();
-                prev_url = url.toString();
-                prev = document.getElementById('prev');
-                prev.setAttribute('href', prev_url);
-            {% endif %}
-
-            {% if books.has_next %}
-                search_params.set('page', next_num.toString());
-                url.search = search_params.toString();
-                next_url = url.toString();
-                next = document.getElementById('next');
-                next.setAttribute('href', next_url);
-            {% endif %}
-
         {% endif %}
     }
 </script>

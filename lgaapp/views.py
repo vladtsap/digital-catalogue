@@ -152,10 +152,7 @@ def search_result(request):
 	return render(
 		request,
 		'search/results.html',
-		{
-			'books': paginated_books,
-			'first_page': args.get('page') is None,
-		}
+		{'books': paginated_books},
 	)
 
 
