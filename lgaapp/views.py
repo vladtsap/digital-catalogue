@@ -80,7 +80,7 @@ def search_box(request):
 	return render(request, 'search/box.html', {'form': form})
 
 
-def filter_books(query: dict) -> set[Book]:
+def filter_books(query: dict) -> list[Book]:
 	filter_query = {}
 
 	if year_from := query.get('yfr'):
@@ -101,84 +101,42 @@ def filter_books(query: dict) -> set[Book]:
 	if place := query.get('plc'):
 		filter_query['place'] = place
 
-	books = list(Book.objects.filter(**filter_query).all())
+	books = set(Book.objects.filter(**filter_query).all())
+	to_delete = set()
 
-	if query.get('n'):
-		temp = []
-		for book in books:
-			for elem in query['n'].split(' '):
-				if elem.lower() in book.name.lower() and elem:
-					temp.append(book)
-		books = temp
+	for book in books:
 
-	if query.get('a'):
-		temp = []
-		for book in books:
-			for elem in query['a'].split(' '):
-				if elem.lower() in book.author.lower() and elem:
-					temp.append(book)
-		books = temp
+		# case-insensitive separated filter
+		for key, book_property in {
+			'n': book.name,
+			'a': book.author,
+			'lang': book.language,
+			'cntr': book.country,
+			'pers': book.personality,
+			'ser': book.series,
+		}.items():
+			if value := query.get(key):
+				is_searched = False
+				for elem in filter(None, re.split(r'\W+', value)):
+					if elem.lower() in book_property.lower():
+						is_searched = True
 
-	if query.get('lang'):
-		temp = []
-		for book in books:
-			for elem in re.split(r'\W+', query['lang']):
-				if elem.lower() in book.language.lower() and elem:
-					temp.append(book)
-		books = temp
+				if not is_searched:
+					to_delete.add(book)
 
-	if query.get('cntr'):
-		temp = []
-		for book in books:
-			for elem in re.split(r'\W+', query['cntr']):
-				if elem.lower() in book.country.lower() and elem:
-					temp.append(book)
-		books = temp
+		# case-sensitive joined filter
+		for key, book_property in {
+			'invnum': book.inventory_number,
+			'add': book.additional,
+			'publ': book.publication,
+		}.items():
+			if value := query.get(key):
+				if value.lower() not in book_property.lower():
+					to_delete.add(book)
 
-	if query.get('pers'):
-		temp = []
-		for book in books:
-			for elem in query['pers'].split(' '):
-				if elem.lower() in book.personality.lower() and elem:
-					temp.append(book)
-		books = temp
+	books = books.difference(to_delete)
 
-	if query.get('ser'):
-		temp = []
-		for book in books:
-			for elem in query['ser'].split(' '):
-				if elem.lower() in book.series.lower() and elem:
-					temp.append(book)
-		books = temp
-
-	if query.get('invnum'):
-		temp = []
-		for book in books:
-			if query['invnum'].lower() in book.inventory_number.lower():
-				temp.append(book)
-		books = temp
-
-	if query.get('add'):
-		temp = []
-		for book in books:
-			if query['add'].lower() in book.additional.lower():
-				temp.append(book)
-		books = temp
-
-	if query.get('publ'):
-		temp = []
-		for book in books:
-			if query['publ'].lower() in book.publication.lower():
-				temp.append(book)
-		books = temp
-
-	# delete duplicates
-	result = []
-	for item in books:
-		if item not in result:
-			result.append(item)
-
-	return result
+	return list(books)
 
 
 @require_http_methods(['GET'])
